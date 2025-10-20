@@ -10,16 +10,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadLessonData() {
     try {
+        console.log('Loading lesson data...');
         const urlParams = new URLSearchParams(window.location.search);
         const lessonId = parseInt(urlParams.get('id')) || 1;
+        console.log('Lesson ID:', lessonId);
         
         // Load lesson from database
         if (window.lessonsDatabase) {
+            console.log('Database loaded, finding lesson...');
             const lesson = findLessonById(lessonId);
             if (lesson) {
+                console.log('Lesson found:', lesson.title);
                 loadLessonContent(lesson);
                 updateSidebar();
             } else {
+                console.log('Lesson not found');
                 showLessonNotFound();
             }
         } else {
