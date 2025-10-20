@@ -120,7 +120,7 @@ function handleAdminRegister(event) {
         role: formData.get('role'),
         organization: formData.get('organization') || 'Qaidah Academy',
         createdAt: new Date().toISOString(),
-        isActive: false // Requires approval
+        isActive: true // Auto-activated (you can change this to require approval)
     };
     
     // Add to admins
@@ -128,15 +128,15 @@ function handleAdminRegister(event) {
     localStorage.setItem('qaidahAdmins', JSON.stringify(admins));
     
     // Show success
-    showSuccess('Admin account created! Please wait for approval. You will receive an email when activated.');
+    showSuccess('Admin account created successfully! You can now login with your credentials.');
     
     // Reset form
     event.target.reset();
     
-    // Redirect to login after 3 seconds
+    // Redirect to login after 2 seconds
     setTimeout(() => {
         window.location.href = 'admin-login.html';
-    }, 3000);
+    }, 2000);
 }
 
 // Check if admin is logged in
