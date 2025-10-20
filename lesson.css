@@ -1,0 +1,491 @@
+/* Lesson Page Specific Styles */
+
+.lesson-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    height: 70px;
+}
+
+.lesson-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.back-btn {
+    color: var(--gray);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.back-btn:hover {
+    background: var(--light-gray);
+    color: var(--dark);
+}
+
+.lesson-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.help-btn {
+    background: var(--light-gray);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.help-btn:hover {
+    background: var(--border);
+}
+
+/* Progress Bar */
+.lesson-progress-bar {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    border-bottom: 1px solid var(--border);
+}
+
+.lesson-progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    transition: width 0.3s ease;
+}
+
+.lesson-progress-text {
+    font-weight: 600;
+    color: var(--gray);
+}
+
+/* Lesson Container */
+.lesson-container {
+    margin-top: 120px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lesson-content {
+    max-width: 800px;
+}
+
+/* Step Indicator */
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.step {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-gray);
+    color: var(--gray);
+    font-weight: 600;
+    border: 2px solid transparent;
+}
+
+.step.completed {
+    background: var(--secondary);
+    color: white;
+}
+
+.step.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+/* Lesson Card */
+.lesson-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 6px var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.lesson-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.lesson-header h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.lesson-header p {
+    color: var(--gray);
+}
+
+/* Arabic Display */
+.arabic-display {
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+}
+
+.arabic-letter {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 8rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    direction: rtl;
+}
+
+.pronunciation {
+    font-size: 2rem;
+    color: var(--gray);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+/* Audio Controls */
+.audio-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.audio-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.2s;
+}
+
+.audio-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.audio-icon {
+    font-size: 1.5rem;
+}
+
+.audio-options {
+    display: flex;
+    gap: 1rem;
+}
+
+.audio-btn-small {
+    background: var(--light-gray);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.audio-btn-small:hover {
+    background: var(--border);
+}
+
+/* Letter Info */
+.letter-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-box {
+    background: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.info-label {
+    display: block;
+    color: var(--gray);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* Tip Box */
+.tip-box {
+    background: #FEF3C7;
+    border-left: 4px solid var(--warning);
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tip-icon {
+    font-size: 2rem;
+}
+
+.tip-title {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
+
+.tip-content p {
+    color: #78350F;
+    line-height: 1.6;
+}
+
+/* Recording Section */
+.recording-section {
+    background: var(--light-gray);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.recording-section h4 {
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+}
+
+.record-btn {
+    background: white;
+    border: 2px solid var(--danger);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.2s;
+}
+
+.record-btn:hover {
+    background: var(--danger);
+    color: white;
+}
+
+.record-btn.recording {
+    background: var(--danger);
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.record-icon {
+    font-size: 1.5rem;
+}
+
+.recording-status {
+    margin-top: 1rem;
+    color: var(--gray);
+    font-weight: 500;
+}
+
+.playback-controls {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Lesson Navigation */
+.lesson-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.lesson-navigation .btn {
+    flex: 1;
+}
+
+/* Lesson Sidebar */
+.lesson-sidebar {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px var(--shadow);
+    height: fit-content;
+    position: sticky;
+    top: 140px;
+}
+
+.sidebar-title {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 1rem;
+}
+
+.lesson-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.lesson-step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.lesson-step.completed {
+    background: #D1FAE5;
+    color: var(--secondary);
+}
+
+.lesson-step.active {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+.step-icon {
+    font-weight: 700;
+}
+
+.step-name {
+    font-size: 0.875rem;
+}
+
+/* Practice Letters */
+.practice-letters {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.letter-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.letter-item {
+    background: var(--light-gray);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.letter-item:hover {
+    background: var(--border);
+}
+
+.letter-item.completed {
+    background: #D1FAE5;
+}
+
+.letter-item.active {
+    background: var(--primary);
+    color: white;
+    border: 2px solid var(--primary-dark);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .lesson-container {
+        grid-template-columns: 1fr;
+    }
+
+    .lesson-sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .lesson-nav-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .lesson-title {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .arabic-letter {
+        font-size: 5rem;
+    }
+
+    .letter-info {
+        grid-template-columns: 1fr;
+    }
+
+    .lesson-navigation {
+        flex-direction: column;
+    }
+}
+

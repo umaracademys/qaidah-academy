@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Content - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+                <h1 class="logo">🕌 Qaidah Academy - Admin</h1>
+            </div>
+            <div class="nav-right">
+                <div class="notification-icon">
+                    🔔
+                    <span class="badge">5</span>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=DC2626&color=fff" alt="Admin">
+                    <span>Admin</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <a href="admin.html" class="menu-item">
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="admin-lessons.html" class="menu-item">
+                <span class="icon">📖</span>
+                <span>Manage Lessons</span>
+            </a>
+            <a href="admin-upload.html" class="menu-item active">
+                <span class="icon">⬆️</span>
+                <span>Upload Content</span>
+            </a>
+            <a href="admin-students.html" class="menu-item">
+                <span class="icon">👥</span>
+                <span>Students</span>
+            </a>
+            <a href="admin-teachers.html" class="menu-item">
+                <span class="icon">👨‍🏫</span>
+                <span>Teachers</span>
+            </a>
+            <a href="admin-analytics.html" class="menu-item">
+                <span class="icon">📈</span>
+                <span>Analytics</span>
+            </a>
+            <a href="admin-settings.html" class="menu-item">
+                <span class="icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+            <hr style="border-color: #E5E7EB; margin: 1rem 0;">
+            <a href="index.html" class="menu-item">
+                <span class="icon">🔙</span>
+                <span>Back to App</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="admin-header">
+                <div>
+                    <h2>⬆️ Upload Content</h2>
+                    <p>Add new lessons, videos, and audio files</p>
+                </div>
+            </div>
+
+            <!-- Upload Tabs -->
+            <div class="upload-tabs">
+                <button class="tab-btn active" onclick="showUploadTab('lesson')">📝 Lesson</button>
+                <button class="tab-btn" onclick="showUploadTab('video')">🎥 Video</button>
+                <button class="tab-btn" onclick="showUploadTab('audio')">🎵 Audio</button>
+                <button class="tab-btn" onclick="showUploadTab('exercise')">🎯 Exercise</button>
+            </div>
+
+            <!-- Lesson Upload Form -->
+            <div class="upload-section" id="lesson-upload">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>📝 Upload New Lesson</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="lessonForm" class="upload-form">
+                            <!-- Basic Information -->
+                            <div class="form-section">
+                                <h4>📋 Basic Information</h4>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Lesson Title *</label>
+                                        <input type="text" name="title" placeholder="e.g., Letter Alif with Fatha" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Lesson Number *</label>
+                                        <input type="number" name="lessonNumber" placeholder="e.g., 1" min="1" max="84" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Module *</label>
+                                        <select name="module" required>
+                                            <option value="">Select Module</option>
+                                            <option value="1">Module 1: Arabic Alphabet</option>
+                                            <option value="2">Module 2: Short Vowels</option>
+                                            <option value="3">Module 3: Long Vowels</option>
+                                            <option value="4">Module 4: Sukoon & Rules</option>
+                                            <option value="5">Module 5: Advanced Rules</option>
+                                            <option value="6">Module 6: Practical Application</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Difficulty Level *</label>
+                                        <select name="difficulty" required>
+                                            <option value="beginner">Beginner</option>
+                                            <option value="intermediate">Intermediate</option>
+                                            <option value="advanced">Advanced</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea name="description" rows="3" placeholder="Brief description of what students will learn..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="form-section">
+                                <h4>📖 Lesson Content</h4>
+                                
+                                <div class="form-group">
+                                    <label>Arabic Letter/Text *</label>
+                                    <input type="text" name="arabicText" class="arabic-input" placeholder="ا" dir="rtl" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Pronunciation</label>
+                                    <input type="text" name="pronunciation" placeholder="e.g., Alif (A)">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Learning Objectives</label>
+                                    <textarea name="objectives" rows="4" placeholder="• Objective 1&#10;• Objective 2&#10;• Objective 3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Key Points / Tips</label>
+                                    <textarea name="tips" rows="3" placeholder="Important tips for pronunciation, writing, or understanding..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Media Files -->
+                            <div class="form-section">
+                                <h4>🎬 Media Files</h4>
+                                
+                                <div class="form-group">
+                                    <label>Audio File (Pronunciation)</label>
+                                    <div class="file-upload-area">
+                                        <input type="file" id="audioFile" accept="audio/*" onchange="handleFileSelect(event, 'audio')">
+                                        <div class="upload-placeholder">
+                                            <div class="upload-icon">🎵</div>
+                                            <div>Drop audio file here or click to browse</div>
+                                            <div class="upload-hint">Supported: MP3, WAV, OGG (Max: 5MB)</div>
+                                        </div>
+                                        <div id="audioPreview" class="file-preview"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Video Tutorial (Optional)</label>
+                                    <div class="file-upload-area">
+                                        <input type="file" id="videoFile" accept="video/*" onchange="handleFileSelect(event, 'video')">
+                                        <div class="upload-placeholder">
+                                            <div class="upload-icon">🎥</div>
+                                            <div>Drop video file here or click to browse</div>
+                                            <div class="upload-hint">Supported: MP4, WebM (Max: 50MB)</div>
+                                        </div>
+                                        <div id="videoPreview" class="file-preview"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Or YouTube Video URL</label>
+                                    <input type="url" name="youtubeUrl" placeholder="https://youtube.com/watch?v=...">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Images (Optional)</label>
+                                    <div class="file-upload-area">
+                                        <input type="file" id="imageFiles" accept="image/*" multiple onchange="handleFileSelect(event, 'images')">
+                                        <div class="upload-placeholder">
+                                            <div class="upload-icon">🖼️</div>
+                                            <div>Drop images here or click to browse</div>
+                                            <div class="upload-hint">Supported: JPG, PNG, WebP (Max: 2MB each)</div>
+                                        </div>
+                                        <div id="imagesPreview" class="file-preview"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Practice & Assessment -->
+                            <div class="form-section">
+                                <h4>🎯 Practice & Assessment</h4>
+                                
+                                <div class="form-group">
+                                    <label>Practice Exercises</label>
+                                    <textarea name="exercises" rows="4" placeholder="Add practice exercises or questions..."></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Quiz Questions (JSON format)</label>
+                                    <textarea name="quizQuestions" rows="6" placeholder='[{"question": "What is this letter?", "options": ["أ", "ب", "ت"], "correct": 0}]'></textarea>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Estimated Duration (minutes)</label>
+                                        <input type="number" name="duration" placeholder="15" min="5" max="120">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Points Reward</label>
+                                        <input type="number" name="points" placeholder="50" min="10" max="500">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Settings -->
+                            <div class="form-section">
+                                <h4>⚙️ Settings</h4>
+                                
+                                <div class="form-row">
+                                    <div class="form-group-checkbox">
+                                        <input type="checkbox" id="isPublished" name="isPublished" checked>
+                                        <label for="isPublished">Publish immediately</label>
+                                    </div>
+                                    <div class="form-group-checkbox">
+                                        <input type="checkbox" id="isFeatured" name="isFeatured">
+                                        <label for="isFeatured">Feature this lesson</label>
+                                    </div>
+                                    <div class="form-group-checkbox">
+                                        <input type="checkbox" id="allowComments" name="allowComments" checked>
+                                        <label for="allowComments">Allow student comments</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" onclick="resetForm()">Cancel</button>
+                                <button type="button" class="btn btn-secondary" onclick="saveAsDraft()">Save as Draft</button>
+                                <button type="submit" class="btn btn-primary">✅ Publish Lesson</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Upload (hidden by default) -->
+            <div class="upload-section" id="video-upload" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>🎥 Upload Video Tutorial</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="video-upload-options">
+                            <button class="upload-option-btn" onclick="selectUploadMethod('file')">
+                                <div class="option-icon">📁</div>
+                                <div class="option-title">Upload from Computer</div>
+                                <div class="option-desc">Select video file from your device</div>
+                            </button>
+                            <button class="upload-option-btn" onclick="selectUploadMethod('youtube')">
+                                <div class="option-icon">📺</div>
+                                <div class="option-title">YouTube Video</div>
+                                <div class="option-desc">Add video from YouTube URL</div>
+                            </button>
+                            <button class="upload-option-btn" onclick="selectUploadMethod('record')">
+                                <div class="option-icon">🎬</div>
+                                <div class="option-title">Record Video</div>
+                                <div class="option-desc">Record directly from camera</div>
+                            </button>
+                        </div>
+
+                        <div id="videoUploadForm" style="display: none; margin-top: 2rem;">
+                            <!-- Dynamic form will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Upload (hidden by default) -->
+            <div class="upload-section" id="audio-upload" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>🎵 Upload Audio File</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="section-note">Audio uploads coming soon. Use the lesson upload form to add audio to lessons.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise Upload (hidden by default) -->
+            <div class="upload-section" id="exercise-upload" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>🎯 Create Practice Exercise</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="section-note">Exercise builder coming soon. Use the lesson upload form to add exercises to lessons.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+    <script src="admin-upload.js"></script>
+</body>
+</html>
+

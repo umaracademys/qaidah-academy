@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress & Analytics - Qaidah Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="progress.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+                <h1 class="logo">🕌 Qaidah Academy</h1>
+            </div>
+            <div class="nav-right">
+                <div class="notification-icon">
+                    🔔
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Ahmed+Khan&background=4F46E5&color=fff" alt="User">
+                    <span>Ahmed Khan</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item">
+                <span class="icon">🏠</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="lessons.html" class="menu-item">
+                <span class="icon">📖</span>
+                <span>My Lessons</span>
+            </a>
+            <a href="progress.html" class="menu-item active">
+                <span class="icon">📊</span>
+                <span>Progress</span>
+            </a>
+            <a href="practice.html" class="menu-item">
+                <span class="icon">🎯</span>
+                <span>Practice</span>
+            </a>
+            <a href="achievements.html" class="menu-item">
+                <span class="icon">🏆</span>
+                <span>Achievements</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">📚</span>
+                <span>Resources</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">💬</span>
+                <span>Community</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h2>📊 Progress & Analytics</h2>
+                <p>Track your learning journey</p>
+            </div>
+
+            <!-- Overall Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-details">
+                        <div class="stat-value">24h 15m</div>
+                        <div class="stat-label">Total Time</div>
+                        <div class="stat-change positive">+2h this week</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-details">
+                        <div class="stat-value">29/84</div>
+                        <div class="stat-label">Lessons Done</div>
+                        <div class="stat-change positive">+4 this week</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-details">
+                        <div class="stat-value">89%</div>
+                        <div class="stat-label">Avg Score</div>
+                        <div class="stat-change positive">+3% trend</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-details">
+                        <div class="stat-value">7 days</div>
+                        <div class="stat-label">Current Streak</div>
+                        <div class="stat-change">Best: 12 days</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-details">
+                        <div class="stat-value">Level 3</div>
+                        <div class="stat-label">Current Level</div>
+                        <div class="stat-change">548 to Expert</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-details">
+                        <div class="stat-value">2,450</div>
+                        <div class="stat-label">Total Points</div>
+                        <div class="stat-change positive">Rank: #23/150</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Activity Chart -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>📈 Learning Activity</h3>
+                    <div class="chart-controls">
+                        <button class="chart-btn active">Week</button>
+                        <button class="chart-btn">Month</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="activity-chart">
+                        <div class="chart-y-axis">
+                            <span>4h</span>
+                            <span>3h</span>
+                            <span>2h</span>
+                            <span>1h</span>
+                            <span>0h</span>
+                        </div>
+                        <div class="chart-content">
+                            <div class="chart-bar-group">
+                                <div class="chart-bar" style="height: 30%"></div>
+                                <span class="chart-label">Mon</span>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bar" style="height: 60%"></div>
+                                <span class="chart-label">Tue</span>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bar" style="height: 40%"></div>
+                                <span class="chart-label">Wed</span>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bar" style="height: 75%"></div>
+                                <span class="chart-label">Thu</span>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bar" style="height: 55%"></div>
+                                <span class="chart-label">Fri</span>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bar" style="height: 20%"></div>
+                                <span class="chart-label">Sat</span>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bar" style="height: 90%"></div>
+                                <span class="chart-label">Sun</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-summary">
+                        <span>Most active: Weekends</span>
+                        <span>Avg session: 28 minutes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Assessment -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>🎯 Skills Assessment</h3>
+                </div>
+                <div class="card-body">
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Letter Recognition</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 95%"></div>
+                            </div>
+                            <div class="skill-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Pronunciation</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 85%"></div>
+                            </div>
+                            <div class="skill-rating">⭐⭐⭐⭐☆</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Reading Fluency</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 70%"></div>
+                            </div>
+                            <div class="skill-rating">⭐⭐⭐☆☆</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Writing</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 80%"></div>
+                            </div>
+                            <div class="skill-rating">⭐⭐⭐⭐☆</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Tajweed Rules</span>
+                                <span class="skill-percentage">40%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 40%"></div>
+                            </div>
+                            <div class="skill-rating">⭐⭐☆☆☆</div>
+                        </div>
+                    </div>
+                    <div class="recommendation-box">
+                        <div class="rec-icon">💡</div>
+                        <div class="rec-text">
+                            <strong>Recommendation:</strong> Focus on Reading Fluency and Tajweed Rules to improve overall performance.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module Completion -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>📖 Module Completion</h3>
+                </div>
+                <div class="card-body">
+                    <div class="modules-progress">
+                        <div class="module-progress-item completed">
+                            <div class="module-icon">✓</div>
+                            <div class="module-details">
+                                <div class="module-name">Module 1: Alphabet</div>
+                                <div class="module-meta">18 lessons • Completed Oct 15</div>
+                            </div>
+                            <div class="module-percentage">100%</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="module-progress-item active">
+                            <div class="module-icon">⚡</div>
+                            <div class="module-details">
+                                <div class="module-name">Module 2: Short Vowels</div>
+                                <div class="module-meta">15 lessons • 11 completed</div>
+                            </div>
+                            <div class="module-percentage">73%</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 73%"></div>
+                            </div>
+                        </div>
+                        <div class="module-progress-item locked">
+                            <div class="module-icon">🔒</div>
+                            <div class="module-details">
+                                <div class="module-name">Module 3: Long Vowels</div>
+                                <div class="module-meta">11 lessons • Not started</div>
+                            </div>
+                            <div class="module-percentage">0%</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates & Badges -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>🏆 Certificates & Badges</h3>
+                    <a href="achievements.html" class="view-all">View All →</a>
+                </div>
+                <div class="card-body">
+                    <div class="certificates-grid">
+                        <div class="certificate-card">
+                            <div class="cert-icon">🏆</div>
+                            <div class="cert-name">Alphabet Master</div>
+                            <div class="cert-date">Earned Oct 15, 2025</div>
+                        </div>
+                        <div class="certificate-card">
+                            <div class="cert-icon">📚</div>
+                            <div class="cert-name">Fatha Expert</div>
+                            <div class="cert-date">Earned Oct 12, 2025</div>
+                        </div>
+                        <div class="certificate-card">
+                            <div class="cert-icon">🔥</div>
+                            <div class="cert-name">7-Day Streak</div>
+                            <div class="cert-date">Earned Oct 19, 2025</div>
+                        </div>
+                        <div class="certificate-card">
+                            <div class="cert-icon">⭐</div>
+                            <div class="cert-name">Quick Learner</div>
+                            <div class="cert-date">Earned Oct 8, 2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

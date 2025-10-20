@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 21 - Qaidah Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lesson.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="lesson-nav">
+        <div class="lesson-nav-container">
+            <a href="index.html" class="back-btn">← Exit Lesson</a>
+            <h2 class="lesson-title">Lesson 21: Fatha with Different Letters (Group 2)</h2>
+            <button class="help-btn" onclick="showHelp()">💡 Help</button>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="lesson-progress-bar">
+        <div class="lesson-progress-fill" id="lessonProgress" style="width: 71%"></div>
+        <div class="lesson-progress-text">Step 5 of 7 (71%)</div>
+    </div>
+
+    <!-- Main Lesson Content -->
+    <main class="lesson-container">
+        <div class="lesson-content">
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <div class="step completed">1</div>
+                <div class="step completed">2</div>
+                <div class="step completed">3</div>
+                <div class="step completed">4</div>
+                <div class="step active">5</div>
+                <div class="step">6</div>
+                <div class="step">7</div>
+            </div>
+
+            <!-- Lesson Card -->
+            <div class="lesson-card">
+                <div class="lesson-header">
+                    <h3>🎯 Guided Practice</h3>
+                    <p>Listen carefully and repeat after the audio</p>
+                </div>
+
+                <!-- Arabic Letter Display -->
+                <div class="arabic-display">
+                    <div class="arabic-letter" id="arabicLetter">سَ</div>
+                    <div class="pronunciation">(SA)</div>
+                </div>
+
+                <!-- Audio Controls -->
+                <div class="audio-controls">
+                    <button class="audio-btn primary" onclick="playAudio()">
+                        <span class="audio-icon">🔊</span>
+                        Play Audio
+                    </button>
+                    <div class="audio-options">
+                        <button class="audio-btn-small" onclick="playAudioSlow()">◄ Slower</button>
+                        <button class="audio-btn-small" onclick="playAudio()">🔊 Normal</button>
+                        <button class="audio-btn-small" onclick="playAudioRepeat()">🔁 Repeat 3x</button>
+                    </div>
+                </div>
+
+                <!-- Letter Information -->
+                <div class="letter-info">
+                    <div class="info-box">
+                        <span class="info-label">Letter:</span>
+                        <span class="info-value">س (Seen)</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-label">Vowel Mark:</span>
+                        <span class="info-value">Fatha ( َ )</span>
+                    </div>
+                </div>
+
+                <!-- Pronunciation Tip -->
+                <div class="tip-box">
+                    <div class="tip-icon">👄</div>
+                    <div class="tip-content">
+                        <div class="tip-title">Pronunciation Tip:</div>
+                        <p>The Fatha ( َ ) is a short "a" sound like in "cat". Place the stroke above the letter and pronounce it with a short "a" vowel. The letter Seen (س) makes an "s" sound, like in "sun".</p>
+                    </div>
+                </div>
+
+                <!-- Recording Section -->
+                <div class="recording-section">
+                    <h4>🎤 Record Your Pronunciation</h4>
+                    <button class="record-btn" id="recordBtn" onclick="toggleRecording()">
+                        <span class="record-icon">🔴</span>
+                        Start Recording
+                    </button>
+                    <div class="recording-status" id="recordingStatus"></div>
+                    <div class="playback-controls" id="playbackControls" style="display: none;">
+                        <button class="btn-secondary" onclick="playRecording()">▶️ Play</button>
+                        <button class="btn-secondary" onclick="deleteRecording()">🗑️ Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="lesson-navigation">
+                <button class="btn btn-secondary" onclick="skipStep()">⏭️ Skip</button>
+                <button class="btn btn-primary btn-large" onclick="nextStep()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Sidebar - Lesson Steps -->
+        <aside class="lesson-sidebar">
+            <div class="sidebar-title">Lesson Steps</div>
+            <div class="lesson-steps">
+                <div class="lesson-step completed">
+                    <span class="step-icon">✓</span>
+                    <span class="step-name">1. Introduction</span>
+                </div>
+                <div class="lesson-step completed">
+                    <span class="step-icon">✓</span>
+                    <span class="step-name">2. Presentation</span>
+                </div>
+                <div class="lesson-step completed">
+                    <span class="step-icon">✓</span>
+                    <span class="step-name">3. Demonstration</span>
+                </div>
+                <div class="lesson-step completed">
+                    <span class="step-icon">✓</span>
+                    <span class="step-name">4. Examples</span>
+                </div>
+                <div class="lesson-step active">
+                    <span class="step-icon">►</span>
+                    <span class="step-name">5. Practice</span>
+                </div>
+                <div class="lesson-step">
+                    <span class="step-icon">•</span>
+                    <span class="step-name">6. Exercises</span>
+                </div>
+                <div class="lesson-step">
+                    <span class="step-icon">•</span>
+                    <span class="step-name">7. Quiz</span>
+                </div>
+            </div>
+
+            <!-- Practice Letters List -->
+            <div class="practice-letters">
+                <div class="sidebar-title">Practice Letters</div>
+                <div class="letter-list">
+                    <div class="letter-item completed">سَ</div>
+                    <div class="letter-item completed">شَ</div>
+                    <div class="letter-item active">صَ</div>
+                    <div class="letter-item">ضَ</div>
+                    <div class="letter-item">طَ</div>
+                    <div class="letter-item">ظَ</div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="lesson-script.js"></script>
+</body>
+</html>
+

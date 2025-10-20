@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qaidah Academy - Learn to Read Quran</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+                <h1 class="logo">🕌 Qaidah Academy</h1>
+            </div>
+            <div class="nav-right">
+                <div class="notification-icon" onclick="showNotifications()">
+                    🔔
+                    <span class="badge">0</span>
+                </div>
+                <div class="user-profile" onclick="toggleUserMenu()">
+                    <img src="https://ui-avatars.com/api/?name=Student&background=4F46E5&color=fff" alt="User">
+                    <span>My Account</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item active">
+                <span class="icon">🏠</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="lessons.html" class="menu-item">
+                <span class="icon">📖</span>
+                <span>My Lessons</span>
+            </a>
+            <a href="progress.html" class="menu-item">
+                <span class="icon">📊</span>
+                <span>Progress</span>
+            </a>
+            <a href="practice.html" class="menu-item">
+                <span class="icon">🎯</span>
+                <span>Practice</span>
+            </a>
+            <a href="achievements.html" class="menu-item">
+                <span class="icon">🏆</span>
+                <span>Achievements</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">📚</span>
+                <span>Resources</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">💬</span>
+                <span>Community</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h2>Welcome to Qaidah Academy! 👋</h2>
+                    <p>Start your journey to read the Quran</p>
+                </div>
+                <div class="welcome-stats">
+                    <div class="stat-item">
+                        <span class="stat-icon">🔥</span>
+                        <div>
+                            <div class="stat-value">0 Days</div>
+                            <div class="stat-label">Streak</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">⭐</span>
+                        <div>
+                            <div class="stat-value">Level 1</div>
+                            <div class="stat-label">Beginner</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🏆</span>
+                        <div>
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Points</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Progress Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>📊 Your Progress</h3>
+                </div>
+                <div class="card-body">
+                    <div class="overall-progress">
+                        <div class="progress-info">
+                            <span class="progress-label">Overall Completion</span>
+                            <span class="progress-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="modules-list">
+                        <div class="module-item active">
+                            <div class="module-info">
+                                <span class="module-icon">▶️</span>
+                                <span class="module-name">Module 1: Alphabet</span>
+                            </div>
+                            <div class="module-progress">
+                                <div class="progress-bar small">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="module-percentage">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="module-item locked">
+                            <div class="module-info">
+                                <span class="module-icon">🔒</span>
+                                <span class="module-name">Module 2: Short Vowels</span>
+                            </div>
+                            <div class="module-progress">
+                                <div class="progress-bar small">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="module-percentage">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="module-item locked">
+                            <div class="module-info">
+                                <span class="module-icon">🔒</span>
+                                <span class="module-name">Module 3: Long Vowels</span>
+                            </div>
+                            <div class="module-progress">
+                                <div class="progress-bar small">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="module-percentage">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="module-item locked">
+                            <div class="module-info">
+                                <span class="module-icon">🔒</span>
+                                <span class="module-name">Module 4: Sukoon & Rules</span>
+                            </div>
+                            <div class="module-progress">
+                                <div class="progress-bar small">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="module-percentage">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="two-column">
+                <!-- Continue Learning Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>📚 Continue Learning</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="lesson-preview">
+                            <div class="lesson-icon">📖</div>
+                            <div class="lesson-details">
+                                <h4>Lesson 21: Fatha with Different Letters</h4>
+                                <p>Group 2 - Practice pronunciation</p>
+                                <div class="lesson-progress-info">
+                                    <span>45% complete</span>
+                                    <span>~15 mins remaining</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-large" onclick="window.location.href='lesson.html'">
+                            Resume Lesson →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Today's Goals Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>🎯 Today's Goals</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="goals-list">
+                            <div class="goal-item">
+                                <input type="checkbox" id="goal1">
+                                <label for="goal1">Complete 1 lesson</label>
+                            </div>
+                            <div class="goal-item">
+                                <input type="checkbox" id="goal2">
+                                <label for="goal2">Practice 15 minutes</label>
+                            </div>
+                            <div class="goal-item completed">
+                                <input type="checkbox" id="goal3" checked>
+                                <label for="goal3">Daily login bonus</label>
+                            </div>
+                            <div class="goal-item">
+                                <input type="checkbox" id="goal4">
+                                <label for="goal4">Score 90%+ on quiz</label>
+                            </div>
+                        </div>
+                        <div class="goals-summary">
+                            <span>Completed: 1/4</span>
+                            <span class="goals-percentage">25%</span>
+                        </div>
+                        <button class="btn btn-secondary">View All Achievements</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Stats Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>⏱️ Study Stats</h3>
+                </div>
+                <div class="card-body">
+                    <div class="stats-summary">
+                        <div class="stat-box">
+                            <div class="stat-value">2h 35m</div>
+                            <div class="stat-label">This Week</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">4 Lessons</div>
+                            <div class="stat-label">Completed</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">89%</div>
+                            <div class="stat-label">Avg Score</div>
+                        </div>
+                    </div>
+                    <div class="chart">
+                        <div class="chart-bars">
+                            <div class="bar-container">
+                                <div class="bar" style="height: 30%"></div>
+                                <span class="bar-label">Mon</span>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar" style="height: 60%"></div>
+                                <span class="bar-label">Tue</span>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar" style="height: 40%"></div>
+                                <span class="bar-label">Wed</span>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar" style="height: 75%"></div>
+                                <span class="bar-label">Thu</span>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar" style="height: 55%"></div>
+                                <span class="bar-label">Fri</span>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar" style="height: 20%"></div>
+                                <span class="bar-label">Sat</span>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar" style="height: 90%"></div>
+                                <span class="bar-label">Sun</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Achievements -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>🏅 Recent Achievements</h3>
+                    <a href="achievements.html" class="view-all">View All →</a>
+                </div>
+                <div class="card-body">
+                    <div class="achievements-grid">
+                        <div class="achievement-badge">
+                            <div class="badge-icon">🏆</div>
+                            <div class="badge-name">Alphabet Master</div>
+                            <div class="badge-desc">Completed Module 1</div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="badge-icon">📚</div>
+                            <div class="badge-name">Fatha Expert</div>
+                            <div class="badge-desc">All Fatha tests passed!</div>
+                        </div>
+                        <div class="achievement-badge">
+                            <div class="badge-icon">🔥</div>
+                            <div class="badge-name">7-Day Streak</div>
+                            <div class="badge-desc">Keep learning daily</div>
+                        </div>
+                        <div class="achievement-badge locked">
+                            <div class="badge-icon">🎯</div>
+                            <div class="badge-name">Kasra Expert</div>
+                            <div class="badge-desc">Complete Kasra lessons</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

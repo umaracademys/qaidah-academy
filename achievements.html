@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements - Qaidah Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="achievements.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+                <h1 class="logo">🕌 Qaidah Academy</h1>
+            </div>
+            <div class="nav-right">
+                <div class="notification-icon" onclick="showNotifications()">
+                    🔔
+                    <span class="badge" id="notifCount">0</span>
+                </div>
+                <div class="user-profile" onclick="toggleUserMenu()">
+                    <img src="https://ui-avatars.com/api/?name=Student&background=4F46E5&color=fff" alt="User">
+                    <span>My Account</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item">
+                <span class="icon">🏠</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="lessons.html" class="menu-item">
+                <span class="icon">📖</span>
+                <span>My Lessons</span>
+            </a>
+            <a href="progress.html" class="menu-item">
+                <span class="icon">📊</span>
+                <span>Progress</span>
+            </a>
+            <a href="practice.html" class="menu-item">
+                <span class="icon">🎯</span>
+                <span>Practice</span>
+            </a>
+            <a href="achievements.html" class="menu-item active">
+                <span class="icon">🏆</span>
+                <span>Achievements</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">📚</span>
+                <span>Resources</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">💬</span>
+                <span>Community</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="achievements-header">
+                <div>
+                    <h2>🏆 Achievements & Badges</h2>
+                    <p>Unlock badges as you progress through your learning journey</p>
+                </div>
+                <div class="achievements-stats">
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalBadges">0</div>
+                        <div class="stat-label">Badges Earned</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalPoints">0</div>
+                        <div class="stat-label">Total Points</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level Progress -->
+            <div class="card level-card">
+                <div class="card-body">
+                    <div class="level-info">
+                        <div class="level-badge">
+                            <div class="level-icon">⭐</div>
+                            <div class="level-details">
+                                <div class="level-number">Level <span id="currentLevel">1</span></div>
+                                <div class="level-name" id="levelName">Beginner</div>
+                            </div>
+                        </div>
+                        <div class="level-progress-info">
+                            <span id="levelProgress">0 / 500 points</span>
+                            <span id="nextLevel">Next: Level 2 - Learner</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar large">
+                        <div class="progress-fill" id="levelProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement Categories -->
+            <div class="achievement-tabs">
+                <button class="tab-btn active" onclick="filterAchievements('all')">All (50)</button>
+                <button class="tab-btn" onclick="filterAchievements('learning')">Learning (15)</button>
+                <button class="tab-btn" onclick="filterAchievements('performance')">Performance (12)</button>
+                <button class="tab-btn" onclick="filterAchievements('engagement')">Engagement (13)</button>
+                <button class="tab-btn" onclick="filterAchievements('special')">Special (10)</button>
+            </div>
+
+            <!-- Achievements Grid -->
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Learning Achievements -->
+                <div class="achievement-card unlocked" data-category="learning">
+                    <div class="badge-ribbon">New!</div>
+                    <div class="badge-icon large">🎓</div>
+                    <div class="badge-name">First Step</div>
+                    <div class="badge-description">Complete your first lesson</div>
+                    <div class="badge-reward">+20 points</div>
+                    <div class="badge-date">Start learning to unlock</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="learning">
+                    <div class="badge-icon large">🏆</div>
+                    <div class="badge-name">Alphabet Master</div>
+                    <div class="badge-description">Complete Module 1: Arabic Alphabet</div>
+                    <div class="badge-reward">+100 points</div>
+                    <div class="badge-progress">0 / 18 lessons</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="learning">
+                    <div class="badge-icon large">📚</div>
+                    <div class="badge-name">Fatha Expert</div>
+                    <div class="badge-description">Master all Fatha lessons</div>
+                    <div class="badge-reward">+75 points</div>
+                    <div class="badge-progress">0 / 6 lessons</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="learning">
+                    <div class="badge-icon large">🎯</div>
+                    <div class="badge-name">Kasra Expert</div>
+                    <div class="badge-description">Master all Kasra lessons</div>
+                    <div class="badge-reward">+75 points</div>
+                    <div class="badge-progress">0 / 6 lessons</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="learning">
+                    <div class="badge-icon large">⭐</div>
+                    <div class="badge-name">Damma Expert</div>
+                    <div class="badge-description">Master all Damma lessons</div>
+                    <div class="badge-reward">+75 points</div>
+                    <div class="badge-progress">0 / 6 lessons</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="learning">
+                    <div class="badge-icon large">📖</div>
+                    <div class="badge-name">Vowel Master</div>
+                    <div class="badge-description">Complete Module 2: Short Vowels</div>
+                    <div class="badge-reward">+150 points</div>
+                    <div class="badge-progress">0 / 15 lessons</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="learning">
+                    <div class="badge-icon large">🌟</div>
+                    <div class="badge-name">Madd Master</div>
+                    <div class="badge-description">Complete Module 3: Long Vowels</div>
+                    <div class="badge-reward">+150 points</div>
+                    <div class="badge-progress">Locked</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="learning">
+                    <div class="badge-icon large">💎</div>
+                    <div class="badge-name">Tajweed Scholar</div>
+                    <div class="badge-description">Complete Module 5: Advanced Tajweed</div>
+                    <div class="badge-reward">+200 points</div>
+                    <div class="badge-progress">Locked</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="learning">
+                    <div class="badge-icon large">👑</div>
+                    <div class="badge-name">Qaidah Graduate</div>
+                    <div class="badge-description">Complete all 84 lessons</div>
+                    <div class="badge-reward">+500 points</div>
+                    <div class="badge-progress">0 / 84 lessons</div>
+                </div>
+
+                <!-- Performance Achievements -->
+                <div class="achievement-card locked" data-category="performance">
+                    <div class="badge-icon large">💯</div>
+                    <div class="badge-name">Perfect Score</div>
+                    <div class="badge-description">Score 100% on any quiz</div>
+                    <div class="badge-reward">+25 points</div>
+                    <div class="badge-progress">Score 100% once</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="performance">
+                    <div class="badge-icon large">🎖️</div>
+                    <div class="badge-name">Excellence</div>
+                    <div class="badge-description">Score 90%+ on 10 assessments</div>
+                    <div class="badge-reward">+50 points</div>
+                    <div class="badge-progress">0 / 10</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="performance">
+                    <div class="badge-icon large">🌟</div>
+                    <div class="badge-name">Rising Star</div>
+                    <div class="badge-description">Improve score by 20% in a week</div>
+                    <div class="badge-reward">+45 points</div>
+                    <div class="badge-progress">Track improvement</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="performance">
+                    <div class="badge-icon large">🏅</div>
+                    <div class="badge-name">Top Student</div>
+                    <div class="badge-description">Reach top 10 on leaderboard</div>
+                    <div class="badge-reward">+100 points</div>
+                    <div class="badge-progress">Not ranked yet</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="performance">
+                    <div class="badge-icon large">💫</div>
+                    <div class="badge-name">Pronunciation Pro</div>
+                    <div class="badge-description">Get 95%+ on pronunciation tests</div>
+                    <div class="badge-reward">+75 points</div>
+                    <div class="badge-progress">Keep practicing</div>
+                </div>
+
+                <!-- Engagement Achievements -->
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">🔥</div>
+                    <div class="badge-name">3-Day Streak</div>
+                    <div class="badge-description">Learn for 3 consecutive days</div>
+                    <div class="badge-reward">+25 points</div>
+                    <div class="badge-progress">0 / 3 days</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">🔥</div>
+                    <div class="badge-name">7-Day Streak</div>
+                    <div class="badge-description">Learn for 7 consecutive days</div>
+                    <div class="badge-reward">+50 points</div>
+                    <div class="badge-progress">0 / 7 days</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">🔥</div>
+                    <div class="badge-name">30-Day Streak</div>
+                    <div class="badge-description">Learn for 30 consecutive days</div>
+                    <div class="badge-reward">+200 points</div>
+                    <div class="badge-progress">0 / 30 days</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">⏰</div>
+                    <div class="badge-name">Early Bird</div>
+                    <div class="badge-description">Complete lessons before 8 AM, 5 times</div>
+                    <div class="badge-reward">+40 points</div>
+                    <div class="badge-progress">0 / 5 times</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">🌙</div>
+                    <div class="badge-name">Night Owl</div>
+                    <div class="badge-description">Complete lessons after 10 PM, 5 times</div>
+                    <div class="badge-reward">+40 points</div>
+                    <div class="badge-progress">0 / 5 times</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">📅</div>
+                    <div class="badge-name">Weekend Warrior</div>
+                    <div class="badge-description">Complete 10 lessons on weekends</div>
+                    <div class="badge-reward">+35 points</div>
+                    <div class="badge-progress">0 / 10 lessons</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">💪</div>
+                    <div class="badge-name">Consistent</div>
+                    <div class="badge-description">Practice every day for a month</div>
+                    <div class="badge-reward">+100 points</div>
+                    <div class="badge-progress">0 / 30 days</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">📖</div>
+                    <div class="badge-name">Bookworm</div>
+                    <div class="badge-description">Spend 10 hours learning total</div>
+                    <div class="badge-reward">+60 points</div>
+                    <div class="badge-progress">0h / 10h</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">⚡</div>
+                    <div class="badge-name">Speed Learner</div>
+                    <div class="badge-description">Complete 5 lessons in one day</div>
+                    <div class="badge-reward">+50 points</div>
+                    <div class="badge-progress">0 / 5 lessons</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="engagement">
+                    <div class="badge-icon large">🎯</div>
+                    <div class="badge-name">Goal Achiever</div>
+                    <div class="badge-description">Complete all daily goals for 7 days</div>
+                    <div class="badge-reward">+75 points</div>
+                    <div class="badge-progress">0 / 7 days</div>
+                </div>
+
+                <!-- Special Achievements -->
+                <div class="achievement-card locked" data-category="special">
+                    <div class="badge-icon large">🌟</div>
+                    <div class="badge-name">Quick Learner</div>
+                    <div class="badge-description">Complete first 5 lessons in one week</div>
+                    <div class="badge-reward">+50 points</div>
+                    <div class="badge-progress">Limited time!</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="special">
+                    <div class="badge-icon large">👨‍👩‍👧</div>
+                    <div class="badge-name">Helper</div>
+                    <div class="badge-description">Help another student in community</div>
+                    <div class="badge-reward">+30 points</div>
+                    <div class="badge-progress">Share knowledge</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="special">
+                    <div class="badge-icon large">📣</div>
+                    <div class="badge-name">Ambassador</div>
+                    <div class="badge-description">Invite 3 friends to join</div>
+                    <div class="badge-reward">+100 points</div>
+                    <div class="badge-progress">0 / 3 friends</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="special">
+                    <div class="badge-icon large">🎉</div>
+                    <div class="badge-name">Birthday Scholar</div>
+                    <div class="badge-description">Complete a lesson on your birthday</div>
+                    <div class="badge-reward">+50 points</div>
+                    <div class="badge-progress">Special day!</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="special">
+                    <div class="badge-icon large">🕌</div>
+                    <div class="badge-name">Ramadan Learner</div>
+                    <div class="badge-description">Complete lessons during Ramadan</div>
+                    <div class="badge-reward">+150 points</div>
+                    <div class="badge-progress">Seasonal</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="special">
+                    <div class="badge-icon large">🎊</div>
+                    <div class="badge-name">Centennial</div>
+                    <div class="badge-description">Earn 100 total badges</div>
+                    <div class="badge-reward">+500 points</div>
+                    <div class="badge-progress">0 / 100</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="special">
+                    <div class="badge-icon large">💝</div>
+                    <div class="badge-name">Dedicated</div>
+                    <div class="badge-description">Use app for 100 total days</div>
+                    <div class="badge-reward">+300 points</div>
+                    <div class="badge-progress">0 / 100 days</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="special">
+                    <div class="badge-icon large">🏆</div>
+                    <div class="badge-name">Champion</div>
+                    <div class="badge-description">Reach #1 on leaderboard</div>
+                    <div class="badge-reward">+500 points</div>
+                    <div class="badge-progress">Keep climbing!</div>
+                </div>
+
+                <div class="achievement-card locked" data-category="special">
+                    <div class="badge-icon large">👑</div>
+                    <div class="badge-name">Master</div>
+                    <div class="badge-description">Reach Level 6 - Master</div>
+                    <div class="badge-reward">+1000 points</div>
+                    <div class="badge-progress">8000 points needed</div>
+                </div>
+
+                <div class="achievement-card mystery locked" data-category="special">
+                    <div class="badge-icon large">❓</div>
+                    <div class="badge-name">Mystery Badge</div>
+                    <div class="badge-description">Keep learning to discover...</div>
+                    <div class="badge-reward">??? points</div>
+                    <div class="badge-progress">Hidden</div>
+                </div>
+            </div>
+
+            <!-- Achievement Stats -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>📈 Achievement Statistics</h3>
+                </div>
+                <div class="card-body">
+                    <div class="stats-grid-small">
+                        <div class="stat-item-small">
+                            <div class="stat-icon">🏆</div>
+                            <div class="stat-details">
+                                <div class="stat-value">0%</div>
+                                <div class="stat-label">Completion Rate</div>
+                            </div>
+                        </div>
+                        <div class="stat-item-small">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-details">
+                                <div class="stat-value">0</div>
+                                <div class="stat-label">Rare Badges</div>
+                            </div>
+                        </div>
+                        <div class="stat-item-small">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-details">
+                                <div class="stat-value">50</div>
+                                <div class="stat-label">Total Available</div>
+                            </div>
+                        </div>
+                        <div class="stat-item-small">
+                            <div class="stat-icon">📅</div>
+                            <div class="stat-details">
+                                <div class="stat-value">-</div>
+                                <div class="stat-label">Latest Badge</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="achievements.js"></script>
+</body>
+</html>
+
