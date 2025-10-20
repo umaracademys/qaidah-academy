@@ -11,20 +11,148 @@ const lessonsDatabase = {
       lessons: [
         {
           id: 1,
-          title: "Letters: Alif, Ba, Ta, Tha",
-          arabicLetters: ["ا", "ب", "ت", "ث"],
-          pronunciation: ["Alif (A)", "Ba (B)", "Ta (T)", "Tha (TH)"],
+          title: "Mouth Anatomy & Letter Origins",
+          arabicLetters: ["All Letters"],
+          pronunciation: ["Complete Mouth Diagram"],
           objectives: [
-            "Recognize the four letters visually",
-            "Pronounce each letter correctly",
-            "Write each letter in isolated form"
+            "Understand mouth anatomy for Arabic pronunciation",
+            "Identify where each letter sound originates",
+            "Learn proper tongue and lip positioning"
           ],
-          tips: "Alif is a straight vertical line. Ba, Ta, and Tha have similar shapes but different dots.",
-          duration: 15,
-          points: 50
+          tips: "This interactive diagram shows exactly where each Arabic letter sound comes from in your mouth!",
+          duration: 20,
+          points: 75,
+          hasDiagram: true,
+          diagramType: "mouth_anatomy",
+          content: {
+            introduction: "Welcome to Arabic! Let's start by understanding how your mouth works to produce Arabic sounds. This interactive diagram will show you exactly where each letter comes from.",
+            mouthDiagram: {
+              title: "Arabic Letter Origins in the Mouth",
+              description: "Click on different areas to see which letters are produced there",
+              areas: [
+                {
+                  id: "lips",
+                  name: "Lips (الشفتان)",
+                  letters: ["ب", "م", "ف", "و"],
+                  description: "Letters produced using the lips",
+                  color: "#FF6B6B"
+                },
+                {
+                  id: "teeth",
+                  name: "Teeth (الأسنان)",
+                  letters: ["ت", "ث", "د", "ذ", "ط", "ظ"],
+                  description: "Letters produced using the teeth",
+                  color: "#4ECDC4"
+                },
+                {
+                  id: "tongue_tip",
+                  name: "Tongue Tip (طرف اللسان)",
+                  letters: ["ت", "د", "ط", "ن", "ر", "ل"],
+                  description: "Letters produced with the tip of the tongue",
+                  color: "#45B7D1"
+                },
+                {
+                  id: "tongue_middle",
+                  name: "Tongue Middle (وسط اللسان)",
+                  letters: ["ج", "ش", "ي"],
+                  description: "Letters produced with the middle of the tongue",
+                  color: "#96CEB4"
+                },
+                {
+                  id: "tongue_back",
+                  name: "Tongue Back (خلف اللسان)",
+                  letters: ["ك", "ق"],
+                  description: "Letters produced with the back of the tongue",
+                  color: "#FFEAA7"
+                },
+                {
+                  id: "throat",
+                  name: "Throat (الحلق)",
+                  letters: ["ع", "غ", "ح", "خ"],
+                  description: "Letters produced from the throat",
+                  color: "#DDA0DD"
+                }
+              ]
+            }
+          }
         },
         {
           id: 2,
+          title: "Letters of the Lips: ف، و، م، ب",
+          arabicLetters: ["ف", "و", "م", "ب"],
+          pronunciation: ["Faa (F)", "Waw (W)", "Meem (M)", "Baa (B)"],
+          objectives: [
+            "Master the four lip letters",
+            "Practice proper lip positioning",
+            "Recognize these letters in words"
+          ],
+          tips: "These four letters all use your lips! Watch how your lips move for each one.",
+          duration: 25,
+          points: 100,
+          hasDiagram: true,
+          diagramType: "lip_letters",
+          content: {
+            introduction: "Today we learn the four letters that come from your lips! Each one uses your lips differently.",
+            lipShapes: [
+              {
+                letter: "ب",
+                name: "Baa",
+                sound: "B",
+                lipPosition: "Both lips pressed together, then release",
+                description: "Like saying 'bubble' - lips come together and pop open",
+                color: "#FF6B6B"
+              },
+              {
+                letter: "م",
+                name: "Meem", 
+                sound: "M",
+                lipPosition: "Both lips pressed together, air through nose",
+                description: "Like saying 'mama' - lips together, sound comes through nose",
+                color: "#4ECDC4"
+              },
+              {
+                letter: "ف",
+                name: "Faa",
+                sound: "F", 
+                lipPosition: "Top teeth on bottom lip",
+                description: "Like saying 'fish' - top teeth touch bottom lip",
+                color: "#45B7D1"
+              },
+              {
+                letter: "و",
+                name: "Waw",
+                sound: "W",
+                lipPosition: "Lips rounded and pushed forward",
+                description: "Like saying 'water' - lips make a small circle",
+                color: "#96CEB4"
+              }
+            ],
+            practiceGrid: {
+              title: "Practice Grid - Letters of the Lips",
+              instructions: "Read each combination. The red letter is the focus letter.",
+              grid: [
+                ["ب", "م", "ف", "و"],
+                ["وبَ", "ومَ", "وفَ", "ووَ"],
+                ["فبَ", "فمَ", "ف", "ف"],
+                ["فمَ", "فوَ", "ففَ", "ف"],
+                ["موَ", "مبَ", "م", "م"],
+                ["مبَ", "ممَ", "مفَ", "م"],
+                ["بفَ", "بوَ", "ب", "ب"]
+              ],
+              focusLetters: [
+                ["ب", "م", "ف", "و"],
+                ["ب", "م", "ف", "و"],
+                ["ب", "م", "ف", "ف"],
+                ["م", "و", "ف", "ف"],
+                ["و", "ب", "م", "م"],
+                ["ب", "م", "ف", "م"],
+                ["ف", "و", "ب", "ب"]
+              ]
+            }
+          }
+        },
+        {
+          id: 3,
           title: "Letters: Jeem, Haa, Khaa",
           arabicLetters: ["ج", "ح", "خ"],
           pronunciation: ["Jeem (J)", "Haa (H)", "Khaa (KH)"],
