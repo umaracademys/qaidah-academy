@@ -84,7 +84,7 @@ function generateLessonCards() {
                 <div class="lesson-features">
                     <span class="feature-tag">📊 Diagrams</span>
                     <span class="feature-tag">🎵 Audio</span>
-                    <span class="feature-tag">✏️ Practice</span>
+                    <span class="feature-tag">🎯 Quiz</span>
                 </div>
             `;
             
