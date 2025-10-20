@@ -1,101 +1,154 @@
-// Lessons Library JavaScript
+// Lessons Library JavaScript - Book 1 Curriculum
 
-// Filter lessons by module
-function filterModule(moduleNum) {
-    const cards = document.querySelectorAll('.lesson-card');
-    const tabs = document.querySelectorAll('.module-tab');
+let currentModule = 1;
+
+// Initialize lessons page
+document.addEventListener('DOMContentLoaded', function() {
+    generateModuleTabs();
+    loadModuleLessons(1);
+});
+
+// Generate module tabs dynamically
+function generateModuleTabs() {
+    const tabsContainer = document.getElementById('moduleTabs');
+    if (!tabsContainer || !window.lessonsDatabase) return;
+    
+    const modules = window.lessonsDatabase.modules;
+    
+    tabsContainer.innerHTML = modules.map((module, index) => `
+        <button class="module-tab ${index === 0 ? 'active' : ''}" onclick="loadModuleLessons(${module.id})">
+            <span class="tab-number">${module.id}</span>
+            <span class="tab-name">${module.name}</span>
+        </button>
+    `).join('');
+}
+
+// Load lessons for a specific module
+function loadModuleLessons(moduleId) {
+    const grid = document.getElementById('lessonsGrid');
+    const noLessonsMessage = document.getElementById('noLessonsMessage');
+    
+    if (!grid || !window.lessonsDatabase) return;
+    
+    currentModule = moduleId;
+    const module = window.lessonsDatabase.modules.find(m => m.id === moduleId);
+    
+    if (!module) {
+        grid.innerHTML = '';
+        noLessonsMessage.style.display = 'block';
+        return;
+    }
+    
+    noLessonsMessage.style.display = 'none';
+    
+    const userData = window.initializeUserData ? window.initializeUserData() : { lessonsCompleted: 0 };
+    
+    // Generate lesson cards for this module
+    grid.innerHTML = module.lessons.map(lesson => {
+        const isUnlocked = lesson.id <= userData.lessonsCompleted + 1;
+        const isCompleted = lesson.id <= userData.lessonsCompleted;
+        
+        return `
+            <div class="lesson-card ${isUnlocked ? 'unlocked' : 'locked'}" 
+                 data-module="${moduleId}" 
+                 data-lesson="${lesson.id}" 
+                 onclick="openLesson(${lesson.id})">
+                <div class="lesson-status ${isCompleted ? 'completed' : (isUnlocked ? 'unlocked' : 'locked')}">
+                    ${isCompleted ? '✅' : (isUnlocked ? '▶️' : '🔒')}
+                </div>
+                <div class="lesson-number">Lesson ${lesson.id}</div>
+                <div class="lesson-arabic">${lesson.arabicLetters.join(' ')}</div>
+                <h3 class="lesson-title">${lesson.title}</h3>
+                <p class="lesson-description">${lesson.tips}</p>
+                <div class="lesson-meta">
+                    <span>⏱️ ${lesson.duration} min</span>
+                    <span>🎯 ${lesson.points} pts</span>
+                    <span>📊 ${getDifficultyLevel(lesson.id)}</span>
+                </div>
+                <div class="lesson-features">
+                    ${lesson.hasDiagram ? '<span class="feature-tag">📊 Interactive</span>' : ''}
+                    <span class="feature-tag">🎵 Audio</span>
+                    <span class="feature-tag">🎯 Quiz</span>
+                </div>
+            </div>
+        `;
+    }).join('');
     
     // Update active tab
-    tabs.forEach((tab, index) => {
+    updateActiveTab(moduleId);
+}
+
+// Update active module tab
+function updateActiveTab(moduleId) {
+    const tabs = document.querySelectorAll('.module-tab');
+    tabs.forEach(tab => {
         tab.classList.remove('active');
-        if (index + 1 === moduleNum) {
+        if (tab.onclick.toString().includes(`loadModuleLessons(${moduleId})`)) {
             tab.classList.add('active');
-        }
-    });
-    
-    // Filter cards
-    cards.forEach(card => {
-        const cardModule = parseInt(card.dataset.module);
-        if (cardModule === moduleNum) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
         }
     });
 }
 
+// Get difficulty level based on lesson number
+function getDifficultyLevel(lessonId) {
+    if (lessonId <= 2) return 'Beginner';
+    if (lessonId <= 6) return 'Easy';
+    if (lessonId <= 14) return 'Medium';
+    if (lessonId <= 20) return 'Intermediate';
+    return 'Advanced';
+}
+
 // Open lesson detail
 function openLesson(lessonId) {
-    if (event.target.closest('.lesson-card').classList.contains('locked')) {
+    const card = event.target.closest('.lesson-card');
+    if (card.classList.contains('locked')) {
         alert('🔒 This lesson is locked. Complete previous lessons to unlock!');
         return;
     }
     window.location.href = `lesson-detail.html?id=${lessonId}`;
 }
 
-// Load more lessons
-function loadMoreLessons() {
-    alert('Loading more lessons... (Feature coming soon!)');
-}
-
-// Generate all lesson cards dynamically
-function generateLessonCards() {
-    const grid = document.getElementById('lessonsGrid');
-    if (!grid || !window.lessonsDatabase) return;
-    
-    const userData = window.initializeUserData ? window.initializeUserData() : { lessonsCompleted: 0 };
-    
-    // Clear existing cards except the first 3
-    const existingCards = grid.querySelectorAll('.lesson-card');
-    if (existingCards.length > 3) {
-        existingCards.forEach((card, index) => {
-            if (index >= 3) card.remove();
-        });
+// Filter lessons (for compatibility)
+function filterLessons(type) {
+    if (type === 'all') {
+        loadModuleLessons(1);
     }
-    
-    // Generate cards for all lessons
-    window.lessonsDatabase.modules.forEach(module => {
-        module.lessons.forEach((lesson, index) => {
-            if (lesson.id <= 3) return; // Skip first 3 (already in HTML)
-            
-            const isUnlocked = lesson.id <= userData.lessonsCompleted + 1;
-            const card = document.createElement('div');
-            card.className = 'lesson-card' + (isUnlocked ? '' : ' locked');
-            card.dataset.module = module.id;
-            card.dataset.lesson = lesson.id;
-            
-            if (isUnlocked) {
-                card.onclick = () => openLesson(lesson.id);
-            }
-            
-            card.innerHTML = `
-                <div class="lesson-status ${isUnlocked ? 'unlocked' : 'locked'}">
-                    ${isUnlocked ? '▶️' : '🔒'}
-                </div>
-                <div class="lesson-number">Lesson ${lesson.id}</div>
-                <div class="lesson-arabic">${lesson.arabicLetters ? lesson.arabicLetters.join(' ') : lesson.arabicText || '📖'}</div>
-                <h3 class="lesson-title">${lesson.title}</h3>
-                <p class="lesson-description">${lesson.objectives ? lesson.objectives[0] : 'Complete this lesson to progress'}</p>
-                <div class="lesson-meta">
-                    <span>⏱️ ${lesson.duration} min</span>
-                    <span>🎯 ${lesson.points} pts</span>
-                    <span>📊 ${module.name.includes('Alphabet') ? 'Beginner' : module.name.includes('Short') ? 'Intermediate' : 'Advanced'}</span>
-                </div>
-                <div class="lesson-features">
-                    <span class="feature-tag">📊 Diagrams</span>
-                    <span class="feature-tag">🎵 Audio</span>
-                    <span class="feature-tag">🎯 Quiz</span>
-                </div>
-            `;
-            
-            grid.appendChild(card);
-        });
-    });
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    generateLessonCards();
-    filterModule(1); // Show Module 1 by default
-});
+// Filter by module (for compatibility)
+function filterModule(moduleNum) {
+    loadModuleLessons(moduleNum);
+}
 
+// Load more lessons (for compatibility)
+function loadMoreLessons() {
+    // This function is kept for compatibility but not needed with the new structure
+    console.log('All lessons are already loaded');
+}
+
+// Toggle Sidebar
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+}
+
+// Toggle User Menu
+function toggleUserMenu() {
+    const options = ['View Profile', 'Settings', 'Help', 'Logout'];
+    alert('User menu - ' + options.join(', '));
+}
+
+// Show Notifications
+function showNotifications() {
+    const userData = window.initializeUserData ? window.initializeUserData() : null;
+    const badges = userData ? userData.unlockedBadges.length : 0;
+    
+    let notifications = 'Notifications:\n';
+    if (badges > 0) {
+        notifications += `• You have ${badges} badge(s)!\n`;
+    }
+    notifications += '• Start learning to earn rewards\n';
+    notifications += '• Complete daily goals for bonus points';
+    
+    alert(notifications);
+}

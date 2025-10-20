@@ -74,7 +74,7 @@
             <div class="page-header">
                 <div>
                     <h2>📖 All Lessons</h2>
-                    <p>Complete curriculum with interactive diagrams</p>
+                    <p>Complete Book 1 curriculum with interactive diagrams</p>
                 </div>
                 <div class="header-actions">
                     <button class="btn btn-secondary" onclick="filterLessons('all')">All Modules</button>
@@ -85,97 +85,22 @@
             </div>
 
             <!-- Module Tabs -->
-            <div class="module-tabs">
-                <button class="module-tab active" onclick="filterModule(1)">
-                    <span class="tab-number">1</span>
-                    <span class="tab-name">Alphabet</span>
-                </button>
-                <button class="module-tab" onclick="filterModule(2)">
-                    <span class="tab-number">2</span>
-                    <span class="tab-name">Short Vowels</span>
-                </button>
-                <button class="module-tab" onclick="filterModule(3)">
-                    <span class="tab-number">3</span>
-                    <span class="tab-name">Long Vowels</span>
-                </button>
-                <button class="module-tab" onclick="filterModule(4)">
-                    <span class="tab-number">4</span>
-                    <span class="tab-name">Sukoon & Rules</span>
-                </button>
-                <button class="module-tab" onclick="filterModule(5)">
-                    <span class="tab-number">5</span>
-                    <span class="tab-name">Advanced</span>
-                </button>
-                <button class="module-tab" onclick="filterModule(6)">
-                    <span class="tab-number">6</span>
-                    <span class="tab-name">Practical</span>
-                </button>
+            <div class="module-tabs" id="moduleTabs">
+                <!-- Module tabs will be generated dynamically -->
             </div>
 
             <!-- Lessons Grid -->
             <div class="lessons-grid" id="lessonsGrid">
-                <!-- Module 1 Lessons -->
-                <div class="lesson-card" data-module="1" data-lesson="1" onclick="openLesson(1)">
-                    <div class="lesson-status unlocked">▶️</div>
-                    <div class="lesson-number">Lesson 1</div>
-                    <div class="lesson-arabic">ا ب ت ث</div>
-                    <h3 class="lesson-title">Letters: Alif, Ba, Ta, Tha</h3>
-                    <p class="lesson-description">Learn the first four Arabic letters with diagrams</p>
-                    <div class="lesson-meta">
-                        <span>⏱️ 15 min</span>
-                        <span>🎯 50 pts</span>
-                        <span>📊 Beginner</span>
-                    </div>
-                    <div class="lesson-features">
-                        <span class="feature-tag">📊 Diagrams</span>
-                        <span class="feature-tag">🎵 Audio</span>
-                        <span class="feature-tag">🎯 Quiz</span>
-                    </div>
-                </div>
-
-                <div class="lesson-card" data-module="1" data-lesson="2">
-                    <div class="lesson-status locked">🔒</div>
-                    <div class="lesson-number">Lesson 2</div>
-                    <div class="lesson-arabic">ج ح خ</div>
-                    <h3 class="lesson-title">Letters: Jeem, Haa, Khaa</h3>
-                    <p class="lesson-description">Master throat letters with visual guides</p>
-                    <div class="lesson-meta">
-                        <span>⏱️ 15 min</span>
-                        <span>🎯 50 pts</span>
-                        <span>📊 Beginner</span>
-                    </div>
-                    <div class="lesson-features">
-                        <span class="feature-tag">📊 Diagrams</span>
-                        <span class="feature-tag">🎵 Audio</span>
-                        <span class="feature-tag">👄 Pronunciation</span>
-                    </div>
-                </div>
-
-                <div class="lesson-card" data-module="1" data-lesson="3">
-                    <div class="lesson-status locked">🔒</div>
-                    <div class="lesson-number">Lesson 3</div>
-                    <div class="lesson-arabic">د ذ</div>
-                    <h3 class="lesson-title">Letters: Dal, Dhal</h3>
-                    <p class="lesson-description">Non-connecting letters explained</p>
-                    <div class="lesson-meta">
-                        <span>⏱️ 12 min</span>
-                        <span>🎯 40 pts</span>
-                        <span>📊 Beginner</span>
-                    </div>
-                    <div class="lesson-features">
-                        <span class="feature-tag">📊 Diagrams</span>
-                        <span class="feature-tag">🎯 Quiz</span>
-                    </div>
-                </div>
-
-                <!-- Add more lesson cards dynamically via JavaScript -->
+                <!-- Lessons will be loaded dynamically from the database -->
             </div>
 
-            <!-- Load More Button -->
-            <div class="load-more">
-                <button class="btn btn-secondary btn-large" onclick="loadMoreLessons()">
-                    Load More Lessons
-                </button>
+            <!-- No lessons message -->
+            <div id="noLessonsMessage" class="no-lessons" style="display: none;">
+                <div class="no-lessons-content">
+                    <div class="no-lessons-icon">📚</div>
+                    <h3>No lessons found</h3>
+                    <p>Select a module to view its lessons</p>
+                </div>
             </div>
         </div>
     </main>
@@ -186,4 +111,3 @@
     <script src="lessons.js"></script>
 </body>
 </html>
-
