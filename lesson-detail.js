@@ -2,22 +2,33 @@
 
 // Load lesson data and initialize diagrams
 document.addEventListener('DOMContentLoaded', function() {
-    loadLessonData();
+    // Wait a bit to ensure all elements are rendered
+    setTimeout(() => {
+        loadLessonData();
+    }, 100);
 });
 
 function loadLessonData() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const lessonId = parseInt(urlParams.get('id')) || 1;
-    
-    // Load lesson from database
-    if (window.lessonsDatabase) {
-        const lesson = findLessonById(lessonId);
-        if (lesson) {
-            loadLessonContent(lesson);
-            updateSidebar();
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const lessonId = parseInt(urlParams.get('id')) || 1;
+        
+        // Load lesson from database
+        if (window.lessonsDatabase) {
+            const lesson = findLessonById(lessonId);
+            if (lesson) {
+                loadLessonContent(lesson);
+                updateSidebar();
+            } else {
+                showLessonNotFound();
+            }
         } else {
-            showLessonNotFound();
+            console.log('Lessons database not loaded yet, retrying...');
+            setTimeout(loadLessonData, 200);
         }
+    } catch (error) {
+        console.log('Error loading lesson data:', error);
+        showLessonNotFound();
     }
 }
 
@@ -33,7 +44,7 @@ function loadLessonContent(lesson) {
     
     // Update objectives
     const objectivesList = document.getElementById('objectives-list');
-    if (objectivesList) {
+    if (objectivesList && lesson.objectives) {
         objectivesList.innerHTML = lesson.objectives.map(obj => `<li>✓ ${obj}</li>`).join('');
     }
     
@@ -58,10 +69,10 @@ function updateLessonInfo(lesson) {
     const difficulty = document.getElementById('lesson-difficulty');
     const tips = document.getElementById('lesson-tips');
     
-    if (duration) duration.textContent = `${lesson.duration} min`;
-    if (points) points.textContent = `${lesson.points} pts`;
+    if (duration && lesson.duration) duration.textContent = `${lesson.duration} min`;
+    if (points && lesson.points) points.textContent = `${lesson.points} pts`;
     if (difficulty) difficulty.textContent = getDifficultyLevel(lesson.id);
-    if (tips) tips.textContent = lesson.tips;
+    if (tips && lesson.tips) tips.textContent = lesson.tips;
 }
 
 function getDifficultyLevel(lessonId) {
@@ -200,15 +211,25 @@ function showLessonNotFound() {
 }
 
 function updateSidebar() {
-    const userData = window.initializeUserData ? window.initializeUserData() : { lessonsCompleted: 0, streak: 0, points: 0 };
-    
-    const lessonsCompleted = document.getElementById('lessons-completed');
-    const currentStreak = document.getElementById('current-streak');
-    const totalPoints = document.getElementById('total-points');
-    
-    if (lessonsCompleted) lessonsCompleted.textContent = userData.lessonsCompleted;
-    if (currentStreak) currentStreak.textContent = `${userData.streak} days`;
-    if (totalPoints) totalPoints.textContent = userData.points;
+    try {
+        const userData = window.initializeUserData ? window.initializeUserData() : { lessonsCompleted: 0, streak: 0, points: 0 };
+        
+        const lessonsCompleted = document.getElementById('lessons-completed');
+        const currentStreak = document.getElementById('current-streak');
+        const totalPoints = document.getElementById('total-points');
+        
+        if (lessonsCompleted && userData.lessonsCompleted !== undefined) {
+            lessonsCompleted.textContent = userData.lessonsCompleted;
+        }
+        if (currentStreak && userData.streak !== undefined) {
+            currentStreak.textContent = `${userData.streak} days`;
+        }
+        if (totalPoints && userData.points !== undefined) {
+            totalPoints.textContent = userData.points;
+        }
+    } catch (error) {
+        console.log('Error updating sidebar:', error);
+    }
 }
 
 function goToNextLesson() {
