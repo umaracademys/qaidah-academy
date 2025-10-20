@@ -50,7 +50,7 @@ function loadDashboardData() {
     
     // Update module progress if getModuleProgress exists
     if (typeof window.getModuleProgress === 'function') {
-        for (let i = 1; i <= 4; i++) {
+        for (let i = 1; i <= 6; i++) {
             const progress = window.getModuleProgress(i);
             const moduleItem = document.querySelectorAll('.module-item')[i - 1];
             if (moduleItem) {
@@ -144,9 +144,9 @@ function updateAchievements(userData) {
         { id: '3-day-streak', name: '3-Day Streak', desc: 'Learn for 3 days in a row', icon: '🔥', unlocked: userData.streak >= 3 },
         { id: '7-day-streak', name: '7-Day Streak', desc: 'Learn for 7 days in a row', icon: '⭐', unlocked: userData.streak >= 7 },
         { id: 'perfect-score', name: 'Perfect Score', desc: 'Get 100% on any lesson', icon: '💯', unlocked: userData.scores.some(s => s.score === 100) },
-        { id: 'alphabet-master', name: 'Alphabet Master', desc: 'Complete Module 1', icon: '🏆', unlocked: userData.lessonsCompleted >= 18 },
-        { id: 'vowel-expert', name: 'Vowel Expert', desc: 'Complete Module 2', icon: '📚', unlocked: userData.lessonsCompleted >= 33 },
-        { id: 'quran-reader', name: 'Quran Reader', desc: 'Complete all modules', icon: '📖', unlocked: userData.lessonsCompleted >= 84 }
+        { id: 'alphabet-master', name: 'Alphabet Master', desc: 'Complete Module 1', icon: '🏆', unlocked: userData.lessonsCompleted >= 2 },
+        { id: 'letters-master', name: 'Letters Master', desc: 'Complete all letter modules', icon: '📚', unlocked: userData.lessonsCompleted >= 14 },
+        { id: 'vowel-expert', name: 'Vowel Expert', desc: 'Complete all modules', icon: '📖', unlocked: userData.lessonsCompleted >= 24 }
     ];
     
     // Show only unlocked badges and next 2 locked ones

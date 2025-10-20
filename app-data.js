@@ -9,7 +9,7 @@ function initializeUserData() {
         level: 1,
         streak: 0,
         lessonsCompleted: 0,
-        totalLessons: 84,
+        totalLessons: 24,
         currentModule: 1,
         currentLesson: 1,
         unlockedBadges: [],
@@ -100,21 +100,31 @@ function checkBadgeUnlocks() {
         unlockBadge('Perfect Score', 25);
     }
     
-    // Alphabet Master - Complete Module 1 (18 lessons)
-    if (userData.lessonsCompleted >= 18 && !userData.unlockedBadges.includes('Alphabet Master')) {
+    // Alphabet Master - Complete Module 1 (2 lessons)
+    if (userData.lessonsCompleted >= 2 && !userData.unlockedBadges.includes('Alphabet Master')) {
         unlockBadge('Alphabet Master', 100);
+    }
+    
+    // Letters Master - Complete Module 2-4 (12 lessons)
+    if (userData.lessonsCompleted >= 14 && !userData.unlockedBadges.includes('Letters Master')) {
+        unlockBadge('Letters Master', 150);
+    }
+    
+    // Vowel Expert - Complete Module 5-6 (10 lessons)
+    if (userData.lessonsCompleted >= 24 && !userData.unlockedBadges.includes('Vowel Expert')) {
+        unlockBadge('Vowel Expert', 200);
     }
 }
 
 // Calculate module progress
 function getModuleProgress(moduleNumber) {
     const moduleLessons = {
-        1: 18, // Alphabet
-        2: 15, // Short Vowels
-        3: 11, // Long Vowels
-        4: 11, // Sukoon & Rules
-        5: 13, // Advanced
-        6: 12  // Practical
+        1: 2,  // Introduction & Mouth Anatomy
+        2: 4,  // Basic Letters - Group 1
+        3: 4,  // Basic Letters - Group 2
+        4: 4,  // Basic Letters - Group 3
+        5: 6,  // Short Vowels (Harakat)
+        6: 4   // Long Vowels (Madd)
     };
     
     const userData = initializeUserData();
