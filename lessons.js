@@ -43,18 +43,18 @@ function loadModuleLessons(moduleId) {
     
     const userData = window.initializeUserData ? window.initializeUserData() : { lessonsCompleted: 0 };
     
-    // Generate lesson cards for this module
+    // Generate lesson cards for this module (all lessons unlocked)
     grid.innerHTML = module.lessons.map(lesson => {
-        const isUnlocked = lesson.id <= userData.lessonsCompleted + 1;
+        const isUnlocked = true; // All lessons are always unlocked
         const isCompleted = lesson.id <= userData.lessonsCompleted;
         
         return `
-            <div class="lesson-card ${isUnlocked ? 'unlocked' : 'locked'}" 
+            <div class="lesson-card unlocked" 
                  data-module="${moduleId}" 
                  data-lesson="${lesson.id}" 
                  onclick="openLesson(${lesson.id})">
-                <div class="lesson-status ${isCompleted ? 'completed' : (isUnlocked ? 'unlocked' : 'locked')}">
-                    ${isCompleted ? '✅' : (isUnlocked ? '▶️' : '🔒')}
+                <div class="lesson-status ${isCompleted ? 'completed' : 'unlocked'}">
+                    ${isCompleted ? '✅' : '▶️'}
                 </div>
                 <div class="lesson-number">Lesson ${lesson.id}</div>
                 <div class="lesson-arabic">${lesson.arabicLetters.join(' ')}</div>
@@ -98,13 +98,8 @@ function getDifficultyLevel(lessonId) {
     return 'Advanced';
 }
 
-// Open lesson detail
+// Open lesson detail (all lessons are unlocked)
 function openLesson(lessonId) {
-    const card = event.target.closest('.lesson-card');
-    if (card.classList.contains('locked')) {
-        alert('🔒 This lesson is locked. Complete previous lessons to unlock!');
-        return;
-    }
     window.location.href = `lesson-detail.html?id=${lessonId}`;
 }
 

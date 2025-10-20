@@ -3,6 +3,12 @@
 // Load lesson data and initialize diagrams
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, starting lesson load process...');
+    console.log('Scripts loaded:', {
+        'app-data.js': typeof window.initializeUserData,
+        'lessons-database.js': typeof window.lessonsDatabase,
+        'script.js': typeof window.loadDashboardData
+    });
+    
     // Wait a bit to ensure all elements are rendered
     setTimeout(() => {
         loadLessonData();
@@ -32,6 +38,9 @@ setTimeout(() => {
 function loadLessonData() {
     try {
         console.log('Loading lesson data...');
+        console.log('window.lessonsDatabase exists:', !!window.lessonsDatabase);
+        console.log('window.lessonsDatabase:', window.lessonsDatabase);
+        
         const urlParams = new URLSearchParams(window.location.search);
         const lessonId = parseInt(urlParams.get('id')) || 1;
         console.log('Lesson ID:', lessonId);
@@ -50,7 +59,18 @@ function loadLessonData() {
             }
         } else {
             console.log('Lessons database not loaded yet, retrying...');
-            setTimeout(loadLessonData, 200);
+            // Try a few more times before giving up
+            if (typeof window.retryCount === 'undefined') {
+                window.retryCount = 0;
+            }
+            window.retryCount++;
+            
+            if (window.retryCount < 10) {
+                setTimeout(loadLessonData, 200);
+            } else {
+                console.log('Max retries reached, showing fallback lesson');
+                showFallbackLesson();
+            }
         }
     } catch (error) {
         console.log('Error loading lesson data:', error);
@@ -247,6 +267,65 @@ function showFallbackLesson() {
                 </div>
                 <div class="card-body">
                     <p>Welcome to Arabic! Let's start by understanding how your mouth works to produce Arabic sounds.</p>
+                    
+                    <!-- Interactive Mouth Diagram -->
+                    <div class="diagram-section">
+                        <h4>📊 Interactive Mouth Diagram</h4>
+                        <div class="mouth-diagram">
+                            <svg viewBox="0 0 400 500" class="mouth-svg">
+                                <!-- Head outline -->
+                                <ellipse cx="200" cy="250" rx="120" ry="160" fill="#FFE4B5" stroke="#D2B48C" stroke-width="2"/>
+                                
+                                <!-- Hair -->
+                                <path d="M 100 120 Q 200 80 300 120" fill="#8B4513" stroke="none"/>
+                                
+                                <!-- Eyes -->
+                                <circle cx="160" cy="200" r="15" fill="white" stroke="#333"/>
+                                <circle cx="240" cy="200" r="15" fill="white" stroke="#333"/>
+                                <circle cx="160" cy="200" r="8" fill="#333"/>
+                                <circle cx="240" cy="200" r="8" fill="#333"/>
+                                
+                                <!-- Nose -->
+                                <ellipse cx="200" cy="230" rx="8" ry="12" fill="#FFE4B5" stroke="#D2B48C"/>
+                                
+                                <!-- Mouth area -->
+                                <ellipse cx="200" cy="300" rx="60" ry="40" fill="#FFB6C1" stroke="#FF69B4" stroke-width="2"/>
+                                
+                                <!-- Interactive areas -->
+                                <g class="interactive-areas">
+                                    <!-- Lips area -->
+                                    <ellipse cx="200" cy="300" rx="60" ry="40" fill="rgba(255,107,107,0.3)" stroke="#FF6B6B" stroke-width="2" 
+                                            class="mouth-area" onclick="alert('Lips: ب، م، ف، و')"/>
+                                    
+                                    <!-- Teeth area -->
+                                    <rect x="170" y="280" width="60" height="20" fill="rgba(78,205,196,0.3)" stroke="#4ECDC4" stroke-width="2" 
+                                          class="mouth-area" onclick="alert('Teeth: ت، ث، د، ذ، ط، ظ')"/>
+                                    
+                                    <!-- Tongue tip area -->
+                                    <ellipse cx="200" cy="320" rx="20" ry="15" fill="rgba(69,183,209,0.3)" stroke="#45B7D1" stroke-width="2" 
+                                            class="mouth-area" onclick="alert('Tongue Tip: ت، د، ط، ن، ر، ل')"/>
+                                    
+                                    <!-- Tongue middle area -->
+                                    <ellipse cx="200" cy="340" rx="30" ry="20" fill="rgba(150,206,180,0.3)" stroke="#96CEB4" stroke-width="2" 
+                                            class="mouth-area" onclick="alert('Tongue Middle: ج، ش، ي')"/>
+                                    
+                                    <!-- Tongue back area -->
+                                    <ellipse cx="200" cy="360" rx="25" ry="15" fill="rgba(255,234,167,0.3)" stroke="#FFEAA7" stroke-width="2" 
+                                            class="mouth-area" onclick="alert('Tongue Back: ك، ق')"/>
+                                    
+                                    <!-- Throat area -->
+                                    <ellipse cx="200" cy="380" rx="35" ry="25" fill="rgba(221,160,221,0.3)" stroke="#DDA0DD" stroke-width="2" 
+                                            class="mouth-area" onclick="alert('Throat: ع، غ، ح، خ')"/>
+                                </g>
+                                
+                                <!-- Labels -->
+                                <text x="200" y="150" text-anchor="middle" class="diagram-title">Arabic Letter Origins</text>
+                                <text x="200" y="170" text-anchor="middle" class="diagram-subtitle">Click on colored areas to learn more</text>
+                            </svg>
+                        </div>
+                        <p><strong>Instructions:</strong> Click on the colored areas above to see which Arabic letters are produced there!</p>
+                    </div>
+                    
                     <div class="alert alert-info">
                         <strong>Note:</strong> This is a simplified version. For the full interactive experience, please refresh the page or check your internet connection.
                     </div>
@@ -267,6 +346,16 @@ function showFallbackLesson() {
     const titleElement = document.getElementById('lesson-title');
     if (titleElement) {
         titleElement.textContent = 'Lesson 1: Mouth Anatomy & Letter Origins';
+    }
+    
+    // Update objectives
+    const objectivesList = document.getElementById('objectives-list');
+    if (objectivesList) {
+        objectivesList.innerHTML = `
+            <li>✓ Understand mouth anatomy for Arabic pronunciation</li>
+            <li>✓ Identify where each letter sound originates</li>
+            <li>✓ Learn proper tongue and lip positioning</li>
+        `;
     }
 }
 
