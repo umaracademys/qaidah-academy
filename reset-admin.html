@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Admin Data - Qaidah Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-auth.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container" style="grid-template-columns: 1fr; max-width: 600px;">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <div class="logo-icon">🔄</div>
+                <h1>Reset Admin Data</h1>
+                <p>Clear previous registration information</p>
+            </div>
+
+            <div class="auth-form-container">
+                <h2>Reset Options</h2>
+                
+                <div style="background: #FEF3C7; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #F59E0B;">
+                    <strong>⚠️ Warning:</strong> This will clear stored data. Use carefully!
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <button class="btn btn-primary btn-large" onclick="clearRegistrations()">
+                        🗑️ Clear Previous Registrations
+                    </button>
+                    
+                    <button class="btn btn-secondary btn-large" onclick="clearAllAdminData()">
+                        🔄 Reset All Admin Data
+                    </button>
+                    
+                    <button class="btn btn-secondary btn-large" onclick="viewAdminAccounts()">
+                        👁️ View All Admin Accounts
+                    </button>
+                    
+                    <button class="btn btn-secondary btn-large" onclick="activateAllAccounts()">
+                        ✅ Activate All Pending Accounts
+                    </button>
+                </div>
+
+                <div class="auth-divider">
+                    <span>QUICK FIX</span>
+                </div>
+
+                <div style="background: #D1FAE5; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <strong>✅ Recommended:</strong><br>
+                    Just click "Clear Previous Registrations" above, then register again!
+                </div>
+
+                <div class="auth-footer">
+                    <a href="admin-login.html">← Back to Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Clear only registration data (keep default admin)
+        function clearRegistrations() {
+            if (confirm('Clear all registered admin accounts (except default admin)?\n\nThis will remove any accounts you created.')) {
+                // Keep only default admin
+                const defaultAdmin = {
+                    id: 1,
+                    username: 'admin',
+                    email: 'admin@qaidah.com',
+                    password: btoa('admin123'),
+                    firstName: 'Admin',
+                    lastName: 'User',
+                    role: 'super-admin',
+                    organization: 'Qaidah Academy',
+                    createdAt: new Date().toISOString(),
+                    isActive: true
+                };
+                
+                localStorage.setItem('qaidahAdmins', JSON.stringify([defaultAdmin]));
+                
+                alert('✅ Previous registrations cleared!\n\nYou can now:\n1. Login with: admin / admin123\n2. Or register a new account');
+                
+                window.location.href = 'admin-register.html';
+            }
+        }
+
+        // Clear all admin data
+        function clearAllAdminData() {
+            if (confirm('Reset ALL admin data? This will:\n\n- Remove all admin accounts\n- Clear sessions\n- Reset to defaults\n\nAre you sure?')) {
+                localStorage.removeItem('qaidahAdmins');
+                localStorage.removeItem('adminSession');
+                sessionStorage.removeItem('adminSession');
+                
+                alert('✅ All admin data cleared!\n\nDefault admin account will be recreated:\nUsername: admin\nPassword: admin123');
+                
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        // View all admin accounts
+        function viewAdminAccounts() {
+            const admins = JSON.parse(localStorage.getItem('qaidahAdmins') || '[]');
+            
+            if (admins.length === 0) {
+                alert('No admin accounts found.');
+                return;
+            }
+            
+            let message = 'Admin Accounts:\n\n';
+            admins.forEach((admin, index) => {
+                message += `${index + 1}. ${admin.firstName} ${admin.lastName}\n`;
+                message += `   Username: ${admin.username}\n`;
+                message += `   Email: ${admin.email}\n`;
+                message += `   Role: ${admin.role}\n`;
+                message += `   Status: ${admin.isActive ? '✅ Active' : '⏳ Pending'}\n`;
+                message += `   Created: ${new Date(admin.createdAt).toLocaleString()}\n\n`;
+            });
+            
+            alert(message);
+        }
+
+        // Activate all pending accounts
+        function activateAllAccounts() {
+            const admins = JSON.parse(localStorage.getItem('qaidahAdmins') || '[]');
+            
+            let activated = 0;
+            admins.forEach(admin => {
+                if (!admin.isActive) {
+                    admin.isActive = true;
+                    activated++;
+                }
+            });
+            
+            if (activated > 0) {
+                localStorage.setItem('qaidahAdmins', JSON.stringify(admins));
+                alert(`✅ ${activated} account(s) activated!\n\nYou can now login with those credentials.`);
+            } else {
+                alert('ℹ️ No pending accounts found. All accounts are already active!');
+            }
+        }
+    </script>
+</body>
+</html>
+
