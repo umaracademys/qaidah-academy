@@ -291,8 +291,35 @@
         </div>
     </main>
 
+    <script src="admin-auth.js"></script>
     <script src="script.js"></script>
     <script src="admin.js"></script>
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const session = checkAdminAuth();
+            if (session) {
+                // Update admin name in UI
+                const adminName = document.querySelector('.user-profile span');
+                if (adminName) {
+                    const admins = JSON.parse(localStorage.getItem('qaidahAdmins'));
+                    const admin = admins.find(a => a.id === session.adminId);
+                    if (admin) {
+                        adminName.textContent = admin.firstName + ' ' + admin.lastName;
+                    }
+                }
+            }
+        });
+        
+        // Update toggleUserMenu to add logout
+        function toggleUserMenu() {
+            const options = ['View Profile', 'Settings', 'Help', 'Logout'];
+            const choice = confirm('Click OK to Logout, Cancel to stay');
+            if (choice) {
+                logout();
+            }
+        }
+    </script>
 </body>
 </html>
 

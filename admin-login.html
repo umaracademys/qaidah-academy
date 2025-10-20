@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Qaidah Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <div class="logo-icon">🕌</div>
+                <h1>Qaidah Academy</h1>
+                <p>Admin Portal</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form-container">
+                <h2>Admin Login</h2>
+                <p class="auth-subtitle">Sign in to manage your platform</p>
+
+                <form id="adminLoginForm" class="auth-form" onsubmit="handleAdminLogin(event)">
+                    <div class="form-group">
+                        <label>Email or Username</label>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            placeholder="admin@qaidah.com" 
+                            required
+                            autocomplete="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            placeholder="Enter your password" 
+                            required
+                            autocomplete="current-password">
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link" onclick="forgotPassword()">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large">
+                        Sign In →
+                    </button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+
+                <div class="auth-alt">
+                    <p>Don't have admin access?</p>
+                    <a href="admin-register.html" class="link-primary">Request Admin Account →</a>
+                </div>
+
+                <div class="auth-footer">
+                    <a href="index.html">← Back to Student Portal</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="auth-info">
+            <h3>👨‍💼 Admin Dashboard Features</h3>
+            <ul class="features-list">
+                <li>
+                    <span class="feature-icon">📚</span>
+                    <div>
+                        <strong>Manage Lessons</strong>
+                        <p>Upload and organize all 84 lessons</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">🎥</span>
+                    <div>
+                        <strong>Video & Audio</strong>
+                        <p>Upload tutorials and pronunciations</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">👥</span>
+                    <div>
+                        <strong>User Management</strong>
+                        <p>Monitor students and teachers</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">📊</span>
+                    <div>
+                        <strong>Analytics</strong>
+                        <p>Track progress and performance</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Demo Credentials Notice -->
+    <div class="demo-notice">
+        <strong>🔐 Demo Credentials:</strong>
+        <div>Username: <code>admin</code> | Password: <code>admin123</code></div>
+        <div style="font-size: 0.875rem; margin-top: 0.5rem; opacity: 0.8;">
+            (Change these in production!)
+        </div>
+    </div>
+
+    <script src="admin-auth.js"></script>
+</body>
+</html>
+

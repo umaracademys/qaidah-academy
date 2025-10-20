@@ -328,9 +328,16 @@
         </div>
     </main>
 
+    <script src="admin-auth.js"></script>
     <script src="script.js"></script>
     <script src="admin.js"></script>
     <script src="admin-upload.js"></script>
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAdminAuth();
+        });
+    </script>
 </body>
 </html>
 
