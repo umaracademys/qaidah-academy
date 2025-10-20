@@ -75,6 +75,15 @@ function loadDashboardData() {
         }
     }
     
+    // Update continue learning section
+    updateContinueLearning(userData);
+    
+    // Update achievements
+    updateAchievements(userData);
+    
+    // Update study stats
+    updateStudyStats(userData);
+    
     // Update goals
     updateGoalsFromData(userData);
     
@@ -83,6 +92,134 @@ function loadDashboardData() {
     if (notifBadge) {
         notifBadge.textContent = userData.unlockedBadges.length;
     }
+}
+
+// Update continue learning section
+function updateContinueLearning(userData) {
+    const lessonTitle = document.getElementById('current-lesson-title');
+    const lessonDesc = document.getElementById('current-lesson-desc');
+    const progressText = document.getElementById('lesson-progress-text');
+    const timeRemaining = document.getElementById('lesson-time-remaining');
+    const progressBar = document.getElementById('lesson-progress-bar');
+    const resumeBtn = document.getElementById('resume-lesson-btn');
+    
+    if (userData.lessonsCompleted === 0) {
+        // First lesson
+        lessonTitle.textContent = 'Lesson 1: Mouth Anatomy & Letter Origins';
+        lessonDesc.textContent = 'Start with understanding how Arabic sounds are made';
+        progressText.textContent = 'Ready to start';
+        timeRemaining.textContent = '~20 mins';
+        progressBar.style.width = '0%';
+        resumeBtn.textContent = 'Start Learning →';
+        resumeBtn.onclick = () => window.location.href = 'lesson-detail.html?id=1';
+    } else if (userData.lessonsCompleted < userData.totalLessons) {
+        // Next lesson
+        const nextLesson = userData.lessonsCompleted + 1;
+        lessonTitle.textContent = `Lesson ${nextLesson}: Next Lesson`;
+        lessonDesc.textContent = 'Continue your learning journey';
+        progressText.textContent = 'Ready to continue';
+        timeRemaining.textContent = '~20 mins';
+        progressBar.style.width = '0%';
+        resumeBtn.textContent = 'Continue Learning →';
+        resumeBtn.onclick = () => window.location.href = `lesson-detail.html?id=${nextLesson}`;
+    } else {
+        // All lessons completed
+        lessonTitle.textContent = 'Congratulations! 🎉';
+        lessonDesc.textContent = 'You have completed all lessons!';
+        progressText.textContent = '100% Complete';
+        timeRemaining.textContent = 'Review mode';
+        progressBar.style.width = '100%';
+        resumeBtn.textContent = 'Review Lessons →';
+        resumeBtn.onclick = () => window.location.href = 'lessons.html';
+    }
+}
+
+// Update achievements section
+function updateAchievements(userData) {
+    const achievementsGrid = document.getElementById('achievements-grid');
+    if (!achievementsGrid) return;
+    
+    const allBadges = [
+        { id: 'first-step', name: 'First Step', desc: 'Complete your first lesson', icon: '🚀', unlocked: userData.lessonsCompleted >= 1 },
+        { id: '3-day-streak', name: '3-Day Streak', desc: 'Learn for 3 days in a row', icon: '🔥', unlocked: userData.streak >= 3 },
+        { id: '7-day-streak', name: '7-Day Streak', desc: 'Learn for 7 days in a row', icon: '⭐', unlocked: userData.streak >= 7 },
+        { id: 'perfect-score', name: 'Perfect Score', desc: 'Get 100% on any lesson', icon: '💯', unlocked: userData.scores.some(s => s.score === 100) },
+        { id: 'alphabet-master', name: 'Alphabet Master', desc: 'Complete Module 1', icon: '🏆', unlocked: userData.lessonsCompleted >= 18 },
+        { id: 'vowel-expert', name: 'Vowel Expert', desc: 'Complete Module 2', icon: '📚', unlocked: userData.lessonsCompleted >= 33 },
+        { id: 'quran-reader', name: 'Quran Reader', desc: 'Complete all modules', icon: '📖', unlocked: userData.lessonsCompleted >= 84 }
+    ];
+    
+    // Show only unlocked badges and next 2 locked ones
+    const unlockedBadges = allBadges.filter(b => b.unlocked);
+    const lockedBadges = allBadges.filter(b => !b.unlocked).slice(0, 2);
+    const displayBadges = [...unlockedBadges, ...lockedBadges].slice(0, 4);
+    
+    achievementsGrid.innerHTML = displayBadges.map(badge => `
+        <div class="achievement-badge ${badge.unlocked ? '' : 'locked'}">
+            <div class="badge-icon">${badge.icon}</div>
+            <div class="badge-name">${badge.name}</div>
+            <div class="badge-desc">${badge.desc}</div>
+        </div>
+    `).join('');
+}
+
+// Update study stats
+function updateStudyStats(userData) {
+    // Update time spent
+    const timeSpentEl = document.getElementById('time-spent');
+    if (timeSpentEl) {
+        const hours = Math.floor(userData.timeSpent / 60);
+        const minutes = userData.timeSpent % 60;
+        if (hours > 0) {
+            timeSpentEl.textContent = `${hours}h ${minutes}m`;
+        } else {
+            timeSpentEl.textContent = `${minutes}m`;
+        }
+    }
+    
+    // Update lessons completed
+    const lessonsCompletedEl = document.getElementById('lessons-completed');
+    if (lessonsCompletedEl) {
+        lessonsCompletedEl.textContent = userData.lessonsCompleted;
+    }
+    
+    // Update average score
+    const avgScoreEl = document.getElementById('avg-score');
+    if (avgScoreEl) {
+        if (userData.scores.length > 0) {
+            const avgScore = Math.round(userData.scores.reduce((sum, s) => sum + s.score, 0) / userData.scores.length);
+            avgScoreEl.textContent = `${avgScore}%`;
+        } else {
+            avgScoreEl.textContent = '0%';
+        }
+    }
+    
+    // Update weekly chart
+    updateWeeklyChart(userData);
+}
+
+// Update weekly chart
+function updateWeeklyChart(userData) {
+    const chartContainer = document.getElementById('weekly-chart');
+    if (!chartContainer) return;
+    
+    // Generate random data for demo (in real app, this would come from actual study data)
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const heights = [30, 60, 40, 75, 55, 20, 90].map(h => Math.min(h, userData.lessonsCompleted * 10));
+    
+    chartContainer.innerHTML = days.map((day, index) => `
+        <div class="bar-container">
+            <div class="bar" style="height: ${heights[index]}%"></div>
+            <span class="bar-label">${day}</span>
+        </div>
+    `).join('');
+}
+
+// Start next lesson
+function startNextLesson() {
+    const userData = window.initializeUserData();
+    const nextLesson = userData.lessonsCompleted + 1;
+    window.location.href = `lesson-detail.html?id=${nextLesson}`;
 }
 
 // Update goals from user data
