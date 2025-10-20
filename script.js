@@ -27,18 +27,19 @@ function showNotifications() {
 
 // Load dashboard data dynamically
 function loadDashboardData() {
-    if (typeof window.initializeUserData !== 'function') return;
-    
-    const userData = window.initializeUserData();
-    
-    // Update stats
-    const streakEl = document.querySelector('.stat-item:nth-child(1) .stat-value');
-    const levelEl = document.querySelector('.stat-item:nth-child(2) .stat-value');
-    const pointsEl = document.querySelector('.stat-item:nth-child(3) .stat-value');
-    
-    if (streakEl) streakEl.textContent = userData.streak + ' Days';
-    if (levelEl) levelEl.textContent = 'Level ' + userData.level;
-    if (pointsEl) pointsEl.textContent = userData.points.toLocaleString();
+    try {
+        if (typeof window.initializeUserData !== 'function') return;
+        
+        const userData = window.initializeUserData();
+        
+        // Update stats
+        const streakEl = document.querySelector('.stat-item:nth-child(1) .stat-value');
+        const levelEl = document.querySelector('.stat-item:nth-child(2) .stat-value');
+        const pointsEl = document.querySelector('.stat-item:nth-child(3) .stat-value');
+        
+        if (streakEl && userData.streak !== undefined) streakEl.textContent = userData.streak + ' Days';
+        if (levelEl && userData.level !== undefined) levelEl.textContent = 'Level ' + userData.level;
+        if (pointsEl && userData.points !== undefined) pointsEl.textContent = userData.points.toLocaleString();
     
     // Update progress
     const overallProgress = Math.round((userData.lessonsCompleted / userData.totalLessons) * 100);
@@ -87,10 +88,13 @@ function loadDashboardData() {
     // Update goals
     updateGoalsFromData(userData);
     
-    // Update notification badge
-    const notifBadge = document.querySelector('.notification-icon .badge');
-    if (notifBadge) {
-        notifBadge.textContent = userData.unlockedBadges.length;
+        // Update notification badge
+        const notifBadge = document.querySelector('.notification-icon .badge');
+        if (notifBadge && userData.unlockedBadges) {
+            notifBadge.textContent = userData.unlockedBadges.length;
+        }
+    } catch (error) {
+        console.log('Error loading dashboard data:', error);
     }
 }
 
@@ -102,6 +106,12 @@ function updateContinueLearning(userData) {
     const timeRemaining = document.getElementById('lesson-time-remaining');
     const progressBar = document.getElementById('lesson-progress-bar');
     const resumeBtn = document.getElementById('resume-lesson-btn');
+    
+    // Check if all required elements exist
+    if (!lessonTitle || !lessonDesc || !progressText || !timeRemaining || !progressBar || !resumeBtn) {
+        console.log('Continue learning elements not found, skipping update');
+        return;
+    }
     
     if (userData.lessonsCompleted === 0) {
         // First lesson
