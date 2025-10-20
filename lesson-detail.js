@@ -2,11 +2,32 @@
 
 // Load lesson data and initialize diagrams
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, starting lesson load process...');
     // Wait a bit to ensure all elements are rendered
     setTimeout(() => {
         loadLessonData();
     }, 100);
 });
+
+// Also try loading when window is fully loaded
+window.addEventListener('load', function() {
+    console.log('Window fully loaded, checking lesson data...');
+    if (!document.querySelector('#lesson-content .loading-message')) {
+        // Content already loaded, skip
+        return;
+    }
+    setTimeout(() => {
+        loadLessonData();
+    }, 200);
+});
+
+// Fallback timeout - show fallback lesson after 3 seconds if nothing loads
+setTimeout(() => {
+    if (document.querySelector('#lesson-content .loading-message')) {
+        console.log('Timeout reached, showing fallback lesson...');
+        showFallbackLesson();
+    }
+}, 3000);
 
 function loadLessonData() {
     try {
@@ -33,7 +54,7 @@ function loadLessonData() {
         }
     } catch (error) {
         console.log('Error loading lesson data:', error);
-        showLessonNotFound();
+        showFallbackLesson();
     }
 }
 
@@ -212,6 +233,40 @@ function showLessonNotFound() {
                 </div>
             </div>
         `;
+    }
+}
+
+function showFallbackLesson() {
+    console.log('Showing fallback lesson...');
+    const contentContainer = document.getElementById('lesson-content');
+    if (contentContainer) {
+        contentContainer.innerHTML = `
+            <div class="card">
+                <div class="card-header">
+                    <h3>📝 Lesson 1: Mouth Anatomy & Letter Origins</h3>
+                </div>
+                <div class="card-body">
+                    <p>Welcome to Arabic! Let's start by understanding how your mouth works to produce Arabic sounds.</p>
+                    <div class="alert alert-info">
+                        <strong>Note:</strong> This is a simplified version. For the full interactive experience, please refresh the page or check your internet connection.
+                    </div>
+                    <div class="lesson-actions">
+                        <button class="btn btn-primary" onclick="window.location.href='lessons.html'">
+                            View All Lessons
+                        </button>
+                        <button class="btn btn-secondary" onclick="window.location.reload()">
+                            Refresh Page
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Update title
+    const titleElement = document.getElementById('lesson-title');
+    if (titleElement) {
+        titleElement.textContent = 'Lesson 1: Mouth Anatomy & Letter Origins';
     }
 }
 
