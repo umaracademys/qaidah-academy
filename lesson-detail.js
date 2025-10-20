@@ -12,9 +12,212 @@ function loadLessonData() {
     // Load lesson from database
     if (window.lessonsDatabase) {
         const lesson = findLessonById(lessonId);
-        if (lesson && lesson.hasDiagram) {
-            showDiagram(lesson);
+        if (lesson) {
+            loadLessonContent(lesson);
+            updateSidebar();
+        } else {
+            showLessonNotFound();
         }
+    }
+}
+
+function loadLessonContent(lesson) {
+    // Update page title
+    document.title = `Lesson ${lesson.id}: ${lesson.title} - Qaidah Academy`;
+    
+    // Update navigation title
+    const titleElement = document.getElementById('lesson-title');
+    if (titleElement) {
+        titleElement.textContent = `Lesson ${lesson.id}: ${lesson.title}`;
+    }
+    
+    // Update objectives
+    const objectivesList = document.getElementById('objectives-list');
+    if (objectivesList) {
+        objectivesList.innerHTML = lesson.objectives.map(obj => `<li>✓ ${obj}</li>`).join('');
+    }
+    
+    // Update lesson info
+    updateLessonInfo(lesson);
+    
+    // Show diagram if available
+    if (lesson.hasDiagram) {
+        showDiagram(lesson);
+    }
+    
+    // Load lesson content
+    loadLessonMainContent(lesson);
+    
+    // Show appropriate buttons
+    showLessonButtons(lesson);
+}
+
+function updateLessonInfo(lesson) {
+    const duration = document.getElementById('lesson-duration');
+    const points = document.getElementById('lesson-points');
+    const difficulty = document.getElementById('lesson-difficulty');
+    const tips = document.getElementById('lesson-tips');
+    
+    if (duration) duration.textContent = `${lesson.duration} min`;
+    if (points) points.textContent = `${lesson.points} pts`;
+    if (difficulty) difficulty.textContent = getDifficultyLevel(lesson.id);
+    if (tips) tips.textContent = lesson.tips;
+}
+
+function getDifficultyLevel(lessonId) {
+    if (lessonId <= 2) return 'Beginner';
+    if (lessonId <= 6) return 'Easy';
+    if (lessonId <= 14) return 'Medium';
+    if (lessonId <= 20) return 'Intermediate';
+    return 'Advanced';
+}
+
+function loadLessonMainContent(lesson) {
+    const contentContainer = document.getElementById('lesson-content');
+    if (!contentContainer) return;
+    
+    let content = '';
+    
+    // Add Arabic letters display
+    if (lesson.arabicLetters && lesson.arabicLetters.length > 0) {
+        content += `
+            <div class="card letter-section">
+                <div class="card-header">
+                    <h3>📝 Arabic Letters</h3>
+                </div>
+                <div class="card-body">
+                    <div class="letters-display">
+                        ${lesson.arabicLetters.map(letter => `
+                            <div class="letter-card">
+                                <div class="arabic-letter-big">${letter}</div>
+                                <div class="letter-name">${getLetterName(letter)}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Add pronunciation section
+    if (lesson.pronunciation && lesson.pronunciation.length > 0) {
+        content += `
+            <div class="card pronunciation-section">
+                <div class="card-header">
+                    <h3>🔊 Pronunciation</h3>
+                </div>
+                <div class="card-body">
+                    <div class="pronunciation-list">
+                        ${lesson.pronunciation.map(pron => `
+                            <div class="pronunciation-item">
+                                <span class="pronunciation-text">${pron}</span>
+                                <button class="audio-btn" onclick="playAudio('${pron}')">🔊</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Add practice section if available
+    if (lesson.content && lesson.content.practiceGrid) {
+        content += `
+            <div class="card practice-section">
+                <div class="card-header">
+                    <h3>🎯 Practice</h3>
+                </div>
+                <div class="card-body">
+                    <h4>${lesson.content.practiceGrid.title}</h4>
+                    <p class="practice-instructions">${lesson.content.practiceGrid.instructions}</p>
+                    <div class="practice-grid">
+                        ${lesson.content.practiceGrid.grid.map((row, rowIndex) => `
+                            <div class="grid-row">
+                                ${row.map((cell, colIndex) => {
+                                    const focusLetter = lesson.content.practiceGrid.focusLetters[rowIndex][colIndex];
+                                    return `
+                                        <div class="grid-cell ${focusLetter ? 'focus-letter' : ''}" 
+                                             style="${focusLetter ? `color: #FF6B6B; font-weight: bold;` : ''}">
+                                            ${cell}
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    contentContainer.innerHTML = content;
+}
+
+function getLetterName(letter) {
+    const letterNames = {
+        'ا': 'Alif', 'ب': 'Ba', 'ت': 'Ta', 'ث': 'Tha',
+        'ج': 'Jeem', 'ح': 'Haa', 'خ': 'Khaa', 'د': 'Dal',
+        'ذ': 'Dhal', 'ر': 'Ra', 'ز': 'Zay', 'س': 'Seen',
+        'ش': 'Sheen', 'ص': 'Sad', 'ض': 'Dad', 'ط': 'Ta',
+        'ظ': 'Za', 'ع': 'Ain', 'غ': 'Ghain', 'ف': 'Fa',
+        'ق': 'Qaf', 'ك': 'Kaf', 'ل': 'Lam', 'م': 'Meem',
+        'ن': 'Noon', 'ه': 'Ha', 'و': 'Waw', 'ي': 'Ya'
+    };
+    return letterNames[letter] || letter;
+}
+
+function showLessonButtons(lesson) {
+    const completeBtn = document.getElementById('complete-lesson-btn');
+    const nextBtn = document.getElementById('next-lesson-btn');
+    
+    if (completeBtn) {
+        completeBtn.style.display = 'inline-block';
+    }
+    
+    // Show next lesson button if not the last lesson
+    if (nextBtn && lesson.id < 24) {
+        nextBtn.style.display = 'inline-block';
+    }
+}
+
+function showLessonNotFound() {
+    const contentContainer = document.getElementById('lesson-content');
+    if (contentContainer) {
+        contentContainer.innerHTML = `
+            <div class="card">
+                <div class="card-body">
+                    <div class="error-message">
+                        <h3>❌ Lesson Not Found</h3>
+                        <p>The lesson you're looking for doesn't exist.</p>
+                        <button class="btn btn-primary" onclick="window.location.href='lessons.html'">
+                            Back to Lessons
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+function updateSidebar() {
+    const userData = window.initializeUserData ? window.initializeUserData() : { lessonsCompleted: 0, streak: 0, points: 0 };
+    
+    const lessonsCompleted = document.getElementById('lessons-completed');
+    const currentStreak = document.getElementById('current-streak');
+    const totalPoints = document.getElementById('total-points');
+    
+    if (lessonsCompleted) lessonsCompleted.textContent = userData.lessonsCompleted;
+    if (currentStreak) currentStreak.textContent = `${userData.streak} days`;
+    if (totalPoints) totalPoints.textContent = userData.points;
+}
+
+function goToNextLesson() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentLessonId = parseInt(urlParams.get('id')) || 1;
+    const nextLessonId = currentLessonId + 1;
+    
+    if (nextLessonId <= 24) {
+        window.location.href = `lesson-detail.html?id=${nextLessonId}`;
     }
 }
 
