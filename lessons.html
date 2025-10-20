@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Lessons - Qaidah Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lessons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+                <h1 class="logo">🕌 Qaidah Academy</h1>
+            </div>
+            <div class="nav-right">
+                <div class="notification-icon" onclick="showNotifications()">
+                    🔔
+                    <span class="badge">0</span>
+                </div>
+                <div class="user-profile" onclick="toggleUserMenu()">
+                    <img src="https://ui-avatars.com/api/?name=Student&background=4F46E5&color=fff" alt="User">
+                    <span>My Account</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <a href="index.html" class="menu-item">
+                <span class="icon">🏠</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="lessons.html" class="menu-item active">
+                <span class="icon">📖</span>
+                <span>My Lessons</span>
+            </a>
+            <a href="progress.html" class="menu-item">
+                <span class="icon">📊</span>
+                <span>Progress</span>
+            </a>
+            <a href="practice.html" class="menu-item">
+                <span class="icon">🎯</span>
+                <span>Practice</span>
+            </a>
+            <a href="achievements.html" class="menu-item">
+                <span class="icon">🏆</span>
+                <span>Achievements</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">📚</span>
+                <span>Resources</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">💬</span>
+                <span>Community</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h2>📖 All Lessons</h2>
+                    <p>Complete curriculum with interactive diagrams</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="filterLessons('all')">All Modules</button>
+                    <button class="btn btn-primary" onclick="window.location.href='lesson-detail.html?id=1'">
+                        Start Learning →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module Tabs -->
+            <div class="module-tabs">
+                <button class="module-tab active" onclick="filterModule(1)">
+                    <span class="tab-number">1</span>
+                    <span class="tab-name">Alphabet</span>
+                </button>
+                <button class="module-tab" onclick="filterModule(2)">
+                    <span class="tab-number">2</span>
+                    <span class="tab-name">Short Vowels</span>
+                </button>
+                <button class="module-tab" onclick="filterModule(3)">
+                    <span class="tab-number">3</span>
+                    <span class="tab-name">Long Vowels</span>
+                </button>
+                <button class="module-tab" onclick="filterModule(4)">
+                    <span class="tab-number">4</span>
+                    <span class="tab-name">Sukoon & Rules</span>
+                </button>
+                <button class="module-tab" onclick="filterModule(5)">
+                    <span class="tab-number">5</span>
+                    <span class="tab-name">Advanced</span>
+                </button>
+                <button class="module-tab" onclick="filterModule(6)">
+                    <span class="tab-number">6</span>
+                    <span class="tab-name">Practical</span>
+                </button>
+            </div>
+
+            <!-- Lessons Grid -->
+            <div class="lessons-grid" id="lessonsGrid">
+                <!-- Module 1 Lessons -->
+                <div class="lesson-card" data-module="1" data-lesson="1" onclick="openLesson(1)">
+                    <div class="lesson-status unlocked">▶️</div>
+                    <div class="lesson-number">Lesson 1</div>
+                    <div class="lesson-arabic">ا ب ت ث</div>
+                    <h3 class="lesson-title">Letters: Alif, Ba, Ta, Tha</h3>
+                    <p class="lesson-description">Learn the first four Arabic letters with diagrams</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 15 min</span>
+                        <span>🎯 50 pts</span>
+                        <span>📊 Beginner</span>
+                    </div>
+                    <div class="lesson-features">
+                        <span class="feature-tag">📊 Diagrams</span>
+                        <span class="feature-tag">🎵 Audio</span>
+                        <span class="feature-tag">✏️ Practice</span>
+                    </div>
+                </div>
+
+                <div class="lesson-card" data-module="1" data-lesson="2">
+                    <div class="lesson-status locked">🔒</div>
+                    <div class="lesson-number">Lesson 2</div>
+                    <div class="lesson-arabic">ج ح خ</div>
+                    <h3 class="lesson-title">Letters: Jeem, Haa, Khaa</h3>
+                    <p class="lesson-description">Master throat letters with visual guides</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 15 min</span>
+                        <span>🎯 50 pts</span>
+                        <span>📊 Beginner</span>
+                    </div>
+                    <div class="lesson-features">
+                        <span class="feature-tag">📊 Diagrams</span>
+                        <span class="feature-tag">🎵 Audio</span>
+                        <span class="feature-tag">👄 Mouth Position</span>
+                    </div>
+                </div>
+
+                <div class="lesson-card" data-module="1" data-lesson="3">
+                    <div class="lesson-status locked">🔒</div>
+                    <div class="lesson-number">Lesson 3</div>
+                    <div class="lesson-arabic">د ذ</div>
+                    <h3 class="lesson-title">Letters: Dal, Dhal</h3>
+                    <p class="lesson-description">Non-connecting letters explained</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 12 min</span>
+                        <span>🎯 40 pts</span>
+                        <span>📊 Beginner</span>
+                    </div>
+                    <div class="lesson-features">
+                        <span class="feature-tag">📊 Diagrams</span>
+                        <span class="feature-tag">✏️ Writing</span>
+                    </div>
+                </div>
+
+                <!-- Add more lesson cards dynamically via JavaScript -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more">
+                <button class="btn btn-secondary btn-large" onclick="loadMoreLessons()">
+                    Load More Lessons
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="app-data.js"></script>
+    <script src="lessons-database.js"></script>
+    <script src="script.js"></script>
+    <script src="lessons.js"></script>
+</body>
+</html>
+

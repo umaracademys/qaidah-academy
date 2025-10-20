@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: Alif, Ba, Ta, Tha - Qaidah Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="lesson-detail.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="lesson-nav">
+        <div class="lesson-nav-container">
+            <a href="lessons.html" class="back-btn">← All Lessons</a>
+            <h2 class="lesson-title">Lesson 1: Letters Alif, Ba, Ta, Tha</h2>
+            <button class="help-btn" onclick="showHelp()">💡 Help</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="lesson-detail-container">
+        <div class="lesson-content-main">
+            <!-- Learning Objectives -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>🎯 Learning Objectives</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="objectives-list">
+                        <li>✓ Recognize the four letters visually</li>
+                        <li>✓ Pronounce each letter correctly</li>
+                        <li>✓ Write each letter in isolated form</li>
+                        <li>✓ Understand letter characteristics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Letter 1: Alif (ا) -->
+            <div class="card letter-section">
+                <div class="card-header">
+                    <h3>Letter 1: Alif (ا)</h3>
+                    <button class="audio-btn" onclick="playAudio('alif')">🔊 Listen</button>
+                </div>
+                <div class="card-body">
+                    <div class="letter-overview">
+                        <div class="letter-display">
+                            <div class="arabic-letter-big">ا</div>
+                            <div class="letter-name">Alif</div>
+                            <div class="letter-sound">Sound: "A" as in "Apple"</div>
+                        </div>
+                        
+                        <!-- Diagram: Letter Formation -->
+                        <div class="diagram-section">
+                            <h4>📊 Letter Formation Diagram</h4>
+                            <div class="diagram-box">
+                                <svg viewBox="0 0 200 300" class="letter-diagram">
+                                    <!-- Grid background -->
+                                    <defs>
+                                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E5E7EB" stroke-width="0.5"/>
+                                        </pattern>
+                                    </defs>
+                                    <rect width="200" height="300" fill="url(#grid)"/>
+                                    
+                                    <!-- Writing guides -->
+                                    <line x1="0" y1="150" x2="200" y2="150" stroke="#6B7280" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <text x="10" y="145" font-size="10" fill="#6B7280">Baseline</text>
+                                    
+                                    <!-- Alif letter -->
+                                    <g id="alif-stroke">
+                                        <line x1="100" y1="50" x2="100" y2="250" stroke="#4F46E5" stroke-width="8" stroke-linecap="round"/>
+                                        <circle cx="100" cy="50" r="6" fill="#10B981"/>
+                                        <text x="115" y="55" font-size="12" fill="#10B981" font-weight="bold">Start</text>
+                                        
+                                        <!-- Arrow showing direction -->
+                                        <path d="M 100 80 L 95 70 L 105 70 Z" fill="#EF4444"/>
+                                        <text x="115" y="100" font-size="12" fill="#EF4444">↓</text>
+                                        
+                                        <circle cx="100" cy="250" r="6" fill="#EF4444"/>
+                                        <text x="115" y="255" font-size="12" fill="#EF4444" font-weight="bold">End</text>
+                                    </g>
+                                </svg>
+                                <div class="diagram-note">
+                                    <strong>How to Write:</strong><br>
+                                    1. Start at the top (green dot)<br>
+                                    2. Draw straight down (follow arrow)<br>
+                                    3. End at baseline (red dot)<br>
+                                    4. Keep it straight and vertical!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pronunciation Diagram -->
+                    <div class="diagram-section">
+                        <h4>👄 Pronunciation Diagram</h4>
+                        <div class="pronunciation-diagram">
+                            <div class="mouth-diagram">
+                                <svg viewBox="0 0 300 200" class="mouth-svg">
+                                    <!-- Mouth profile -->
+                                    <ellipse cx="150" cy="100" rx="80" ry="60" fill="#FFE5E5" stroke="#DC2626" stroke-width="2"/>
+                                    <path d="M 100 100 Q 150 120 200 100" fill="none" stroke="#DC2626" stroke-width="3"/>
+                                    
+                                    <!-- Tongue position -->
+                                    <ellipse cx="150" cy="130" rx="40" ry="20" fill="#FF9999"/>
+                                    <text x="130" y="135" font-size="12" fill="#fff" font-weight="bold">Tongue</text>
+                                    
+                                    <!-- Air flow indicator -->
+                                    <path d="M 70 100 L 50 100" stroke="#4F46E5" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                    <text x="20" y="105" font-size="14" fill="#4F46E5" font-weight="bold">Air</text>
+                                    
+                                    <defs>
+                                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                                            <polygon points="0 0, 10 5, 0 10" fill="#4F46E5"/>
+                                        </marker>
+                                    </defs>
+                                    
+                                    <!-- Labels -->
+                                    <text x="150" y="30" font-size="16" fill="#1F2937" font-weight="bold" text-anchor="middle">Alif (ا) - "A" Sound</text>
+                                </svg>
+                            </div>
+                            <div class="pronunciation-notes">
+                                <div class="note-item">
+                                    <strong>🗣️ Sound:</strong> Short "A" like in "Apple"
+                                </div>
+                                <div class="note-item">
+                                    <strong>👅 Tongue Position:</strong> Relaxed, middle of mouth
+                                </div>
+                                <div class="note-item">
+                                    <strong>💨 Air Flow:</strong> Open, unrestricted
+                                </div>
+                                <div class="note-item">
+                                    <strong>⏱️ Duration:</strong> Very short, quick sound
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Writing Practice -->
+                    <div class="practice-section">
+                        <h4>✏️ Writing Practice</h4>
+                        <div class="writing-grid">
+                            <div class="trace-box">
+                                <div class="trace-letter">ا</div>
+                                <div class="trace-label">Trace</div>
+                            </div>
+                            <div class="trace-box">
+                                <div class="trace-letter dotted">ا</div>
+                                <div class="trace-label">Copy</div>
+                            </div>
+                            <div class="trace-box empty">
+                                <div class="trace-label">Write</div>
+                            </div>
+                            <div class="trace-box empty">
+                                <div class="trace-label">Write</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Letter 2: Ba (ب) -->
+            <div class="card letter-section">
+                <div class="card-header">
+                    <h3>Letter 2: Ba (ب)</h3>
+                    <button class="audio-btn" onclick="playAudio('ba')">🔊 Listen</button>
+                </div>
+                <div class="card-body">
+                    <div class="letter-overview">
+                        <div class="letter-display">
+                            <div class="arabic-letter-big">ب</div>
+                            <div class="letter-name">Ba</div>
+                            <div class="letter-sound">Sound: "B" as in "Ball"</div>
+                        </div>
+                        
+                        <!-- Diagram: Letter Formation -->
+                        <div class="diagram-section">
+                            <h4>📊 Letter Formation Diagram</h4>
+                            <div class="diagram-box">
+                                <svg viewBox="0 0 200 300" class="letter-diagram">
+                                    <rect width="200" height="300" fill="url(#grid)"/>
+                                    <line x1="0" y1="150" x2="200" y2="150" stroke="#6B7280" stroke-width="2" stroke-dasharray="5,5"/>
+                                    
+                                    <!-- Ba letter formation -->
+                                    <g id="ba-stroke">
+                                        <!-- Main curve -->
+                                        <circle cx="150" cy="140" r="6" fill="#10B981"/>
+                                        <text x="160" y="145" font-size="12" fill="#10B981" font-weight="bold">① Start</text>
+                                        
+                                        <path d="M 150 140 Q 120 120 90 140 Q 70 160 80 180 Q 90 190 110 185" 
+                                              stroke="#4F46E5" stroke-width="8" fill="none" stroke-linecap="round"/>
+                                        
+                                        <circle cx="110" cy="185" r="6" fill="#F59E0B"/>
+                                        <text x="120" y="190" font-size="12" fill="#F59E0B" font-weight="bold">② End curve</text>
+                                        
+                                        <!-- Dot -->
+                                        <circle cx="100" cy="220" r="8" fill="#4F46E5"/>
+                                        <circle cx="100" cy="220" r="6" fill="#EF4444"/>
+                                        <text x="115" y="225" font-size="12" fill="#EF4444" font-weight="bold">③ Dot below</text>
+                                    </g>
+                                </svg>
+                                <div class="diagram-note">
+                                    <strong>How to Write:</strong><br>
+                                    1. Start from right, curve left<br>
+                                    2. Make a small boat shape<br>
+                                    3. Add ONE dot below the curve<br>
+                                    4. Dot placement is important!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Letter Comparison Diagram -->
+                    <div class="diagram-section">
+                        <h4>🔍 Letter Comparison: Ba, Ta, Tha</h4>
+                        <div class="comparison-diagram">
+                            <div class="compare-item">
+                                <div class="compare-letter">ب</div>
+                                <div class="compare-name">Ba</div>
+                                <div class="compare-detail">1 dot below</div>
+                                <div class="dots-diagram">
+                                    <div class="dot-visual below">•</div>
+                                </div>
+                            </div>
+                            <div class="compare-item">
+                                <div class="compare-letter">ت</div>
+                                <div class="compare-name">Ta</div>
+                                <div class="compare-detail">2 dots above</div>
+                                <div class="dots-diagram">
+                                    <div class="dot-visual above">• •</div>
+                                </div>
+                            </div>
+                            <div class="compare-item">
+                                <div class="compare-letter">ث</div>
+                                <div class="compare-name">Tha</div>
+                                <div class="compare-detail">3 dots above</div>
+                                <div class="dots-diagram">
+                                    <div class="dot-visual above">• • •</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comparison-note">
+                            <strong>💡 Key Difference:</strong> Same base shape, different dots! The number and position of dots change the letter.
+                        </div>
+                    </div>
+
+                    <!-- Writing Practice -->
+                    <div class="practice-section">
+                        <h4>✏️ Writing Practice</h4>
+                        <div class="writing-grid">
+                            <div class="trace-box">
+                                <div class="trace-letter">ب</div>
+                                <div class="trace-label">Trace</div>
+                            </div>
+                            <div class="trace-box">
+                                <div class="trace-letter dotted">ب</div>
+                                <div class="trace-label">Copy</div>
+                            </div>
+                            <div class="trace-box empty">
+                                <div class="trace-label">Write</div>
+                            </div>
+                            <div class="trace-box empty">
+                                <div class="trace-label">Write</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connection Forms Diagram -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>🔗 Letter Connection Forms</h3>
+                </div>
+                <div class="card-body">
+                    <div class="forms-diagram">
+                        <div class="form-item">
+                            <div class="form-label">Isolated</div>
+                            <div class="form-letter">ب</div>
+                            <div class="form-example">Alone</div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="form-item">
+                            <div class="form-label">Beginning</div>
+                            <div class="form-letter">بـ</div>
+                            <div class="form-example">بَيْت</div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="form-item">
+                            <div class="form-label">Middle</div>
+                            <div class="form-letter">ـبـ</div>
+                            <div class="form-example">كَبِير</div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="form-item">
+                            <div class="form-label">End</div>
+                            <div class="form-letter">ـب</div>
+                            <div class="form-example">كَتَبَ</div>
+                        </div>
+                    </div>
+                    <div class="diagram-note">
+                        <strong>Important:</strong> Arabic letters change shape depending on their position in a word!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Quiz -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>✅ Quick Check</h3>
+                </div>
+                <div class="card-body">
+                    <div class="quiz-question">
+                        <p><strong>Question:</strong> Which letter has ONE dot BELOW?</p>
+                        <div class="quiz-options">
+                            <button class="quiz-option" onclick="checkAnswer(this, true)">
+                                <span class="option-letter">ب</span>
+                                <span class="option-label">Ba</span>
+                            </button>
+                            <button class="quiz-option" onclick="checkAnswer(this, false)">
+                                <span class="option-letter">ت</span>
+                                <span class="option-label">Ta</span>
+                            </button>
+                            <button class="quiz-option" onclick="checkAnswer(this, false)">
+                                <span class="option-letter">ث</span>
+                                <span class="option-label">Tha</span>
+                            </button>
+                            <button class="quiz-option" onclick="checkAnswer(this, false)">
+                                <span class="option-letter">ا</span>
+                                <span class="option-label">Alif</span>
+                            </button>
+                        </div>
+                        <div class="quiz-feedback" id="quizFeedback"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>📝 Lesson Summary</h3>
+                </div>
+                <div class="card-body">
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <div class="summary-icon">ا</div>
+                            <div class="summary-details">
+                                <strong>Alif</strong>
+                                <p>Straight vertical line • "A" sound • No dots</p>
+                            </div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">ب</div>
+                            <div class="summary-details">
+                                <strong>Ba</strong>
+                                <p>Curved shape • "B" sound • 1 dot below</p>
+                            </div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">ت</div>
+                            <div class="summary-details">
+                                <strong>Ta</strong>
+                                <p>Same curve • "T" sound • 2 dots above</p>
+                            </div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon">ث</div>
+                            <div class="summary-details">
+                                <strong>Tha</strong>
+                                <p>Same curve • "TH" sound • 3 dots above</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="lesson-navigation">
+                <button class="btn btn-secondary" onclick="window.location.href='lessons.html'">
+                    ← Back to Lessons
+                </button>
+                <button class="btn btn-primary btn-large" onclick="completeLesson()">
+                    Complete Lesson & Take Quiz →
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="lesson-sidebar">
+            <div class="sidebar-section">
+                <h4>📋 Contents</h4>
+                <div class="contents-list">
+                    <a href="#alif" class="content-link">1. Letter Alif (ا)</a>
+                    <a href="#ba" class="content-link">2. Letter Ba (ب)</a>
+                    <a href="#ta" class="content-link">3. Letter Ta (ت)</a>
+                    <a href="#tha" class="content-link">4. Letter Tha (ث)</a>
+                    <a href="#connections" class="content-link">5. Connection Forms</a>
+                    <a href="#quiz" class="content-link">6. Quick Check</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>🎯 Progress</h4>
+                <div class="progress-info">
+                    <span>Lesson: 1 of 84</span>
+                    <span>Module 1: Alphabet</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 1%"></div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>📚 Resources</h4>
+                <div class="resource-links">
+                    <button class="resource-btn" onclick="downloadPDF()">
+                        📄 Download PDF
+                    </button>
+                    <button class="resource-btn" onclick="printLesson()">
+                        🖨️ Print Lesson
+                    </button>
+                    <button class="resource-btn" onclick="watchVideo()">
+                        🎥 Watch Video
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-section tips-box">
+                <h4>💡 Quick Tips</h4>
+                <ul class="tips-list">
+                    <li>Practice writing each letter 10 times</li>
+                    <li>Listen to pronunciation repeatedly</li>
+                    <li>Focus on dot positions</li>
+                    <li>Take your time - accuracy over speed!</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <script src="app-data.js"></script>
+    <script src="script.js"></script>
+    <script src="lesson-detail.js"></script>
+</body>
+</html>
+
