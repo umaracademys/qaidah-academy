@@ -100,6 +100,11 @@ function loadDashboardData() {
 
 // Update continue learning section
 function updateContinueLearning(userData) {
+    // Only run on dashboard page
+    if (!document.getElementById('current-lesson-title')) {
+        return;
+    }
+    
     const lessonTitle = document.getElementById('current-lesson-title');
     const lessonDesc = document.getElementById('current-lesson-desc');
     const progressText = document.getElementById('lesson-progress-text');
@@ -257,8 +262,8 @@ function updateGoalsFromData(userData) {
 
 // Animate progress bars on page load
 window.addEventListener('load', () => {
-    // Load dashboard data first
-    if (typeof window.initializeUserData === 'function') {
+    // Only load dashboard data on dashboard page
+    if (document.getElementById('current-lesson-title') && typeof window.initializeUserData === 'function') {
         loadDashboardData();
     }
     
